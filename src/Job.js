@@ -15,9 +15,9 @@ function Job({ job }) {
             <h2>{job.title}</h2>
             <h3>{job.companyHandle}</h3>
             {job.salary && 
-                <h1>💸💸Salary: {job.salary}💸💸</h1>
+                <h5>💸💸Salary: {job.salary}💸💸</h5>
             }
-            <h4>💹💹Equity: {job.equity}💹💹</h4>
+            <h5>💹💹Equity: {job.equity}💹💹</h5>
         </div>
     )
 }

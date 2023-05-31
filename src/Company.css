@@ -5,8 +5,12 @@
 }
 
 .CompanyLink {
+    display: flex;
+    width: 80%;
     text-decoration: none;
     color: inherit;
+    justify-content: center;
+    align-items: center;
 }
 
 img{

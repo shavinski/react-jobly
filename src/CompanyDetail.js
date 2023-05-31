@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import JoblyAPI from "./joblyApi";
 import Job from "./Job";
+import './Companies.css'
 import { useParams } from "react-router-dom";
 
 /** Renders information on single company with all jobs listed by company
@@ -32,7 +33,7 @@ function CompanyDetail() {
      }
 
     return (
-        <div>
+        <div className="companyContainer">
             <h1>{companyDetail.name}</h1>
             <h3>{companyDetail.description}</h3>
             {companyDetail.jobs.map((j) => {

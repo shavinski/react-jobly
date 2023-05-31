@@ -34,16 +34,19 @@ function SearchBar({handleSearch}) {
 
   /** render form */
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="searchTerm"></label>
-      <input
-      placeholder="Enter Search Term..."
-        id="searchTerm"
-        name="searchTerm"
-        value={formData.searchTerm}
-        onChange={handleChange}
-      />
-      <button>Search</button>
+    <form className='m-3' onSubmit={handleSubmit}>
+
+      <div className="d-flex ">
+        <input
+          className=""
+          placeholder="Enter Search Term..."
+          id="searchTerm"
+          name="searchTerm"
+          value={formData.searchTerm}
+          onChange={handleChange}
+        />
+        <button className="btn btn-primary btn-sm">Search</button>
+      </div>
     </form>
   );
 }
