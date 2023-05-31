@@ -5,10 +5,14 @@ import Companies from "./Companies";
 import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
 
-/**
- * 
- * 
+/** Makes routes for application 
+ *  
+ * props:
+ * - none 
+ *
+ * App -> RoutesList
  */
+
 function RoutesList() {
   return (
         <Routes>

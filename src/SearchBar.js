@@ -2,9 +2,13 @@ import React, { useState } from "react";
 
 /** Form for searching companies and/or jobs
  *
- * Has state for the searchTerm characters
- * sends query to fn received from parent.
+ * Props:
+ *  handleSearch, function to handle search term inputted in form
+ * 
+ * State: formData
+ * - sends query to fn received from parent.
  *
+ * {Companies, Jobs} -> SearchBar
  */
 
 function SearchBar({handleSearch}) {

@@ -3,10 +3,14 @@ import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
 import JoblyApi from "./joblyApi";
 
-/**
+/** Loads starting homepage
  *
- *
+ * * Props: 
+ * - none
+ * 
+ * RoutesList -> Homepage
  */
+
 function Homepage() {
   return (
     <div>

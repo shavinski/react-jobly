@@ -5,6 +5,14 @@ import Company from "./Company";
 import SearchBar from "./SearchBar";
 import "./Companies.css";
 
+/** Loads company details 
+ * 
+ * * Props: 
+ * - none
+ * 
+ * App -> Companies 
+ */
+
 function Companies() {
   const [companyList, setCompanyList] = useState([]);
 
