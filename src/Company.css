@@ -1,6 +1,7 @@
 .Company {
     border: solid black;
     margin: 1em;
+    width: 70%;
 }
 
 .CompanyLink {
@@ -8,3 +9,7 @@
     color: inherit;
 }
 
+img{
+    max-height: 80px;
+    max-width: 80px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import JoblyAPI from "./joblyApi";
 import Job from "./Job";
 import SearchBar from './SearchBar'
+import './Jobs.css'
 
 /**Jobs component:
  * 
@@ -37,7 +38,7 @@ function Jobs() {
     }
 
     return (
-        <div>
+        <div className="jobContainer">
             <SearchBar handleSearch={handleSearch} />
             {jobList.map((j) => {
                 return <Job job={j} key={j.id} />
