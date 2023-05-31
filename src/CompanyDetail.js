@@ -3,6 +3,17 @@ import JoblyAPI from "./joblyApi";
 import Job from "./Job";
 import { useParams } from "react-router-dom";
 
+/** Renders information on single company with all jobs listed by company
+ * 
+ * * Props: 
+ * - none
+ * 
+ * State: companyDetail 
+ * - should be an object with company data
+ * 
+ *  Companies -> CompanyDetail -> Job
+ */
+
 function CompanyDetail() {
     const [companyDetail, setCompanyDetail] = useState(null);
     const { handle } = useParams();

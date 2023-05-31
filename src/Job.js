@@ -1,6 +1,14 @@
 import React from "react";
 import './Job.css'
 
+/** Renders a job card with info
+ * 
+ * props: {job} 
+ * - job will be an object with all info about a single job posting
+ * 
+ * CompanyDetail -> Job
+ */
+
 function Job({ job }) {
     return (
         <div className="Job">

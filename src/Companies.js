@@ -5,6 +5,14 @@ import JoblyAPI from "./joblyApi";
 import Company from "./Company";
 import SearchBar from './SearchBar'
 
+/** Loads company details 
+ * 
+ * * Props: 
+ * - none
+ * 
+ * App -> Companies 
+ */
+
 function Companies() {
     const [companyList, setCompanyList] = useState([]);
 

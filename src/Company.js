@@ -1,7 +1,12 @@
 import React from "react"
 import './Company.css'
-/**
- * returns single company tile 
+
+/** Design for company cards that load on /companies 
+ * 
+ * props: {comp} 
+ * - will be an object with info about a single company
+ * 
+ * Companies -> Company 
  */
 
 function Company({comp}){
