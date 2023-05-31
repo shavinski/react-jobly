@@ -1,13 +1,12 @@
 
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 import JoblyAPI from "./joblyApi";
 import Company from "./Company";
 import SearchBar from './SearchBar'
-// import { useParams } from "react-router-dom";
 
 function Companies() {
     const [companyList, setCompanyList] = useState([]);
-    // const { handle } = useParams();
 
     useEffect(() => {
         async function getCompanies() {
@@ -19,22 +18,23 @@ function Companies() {
     }, []);
 
 
-        async function handleSearch(results) {
-            const response = await JoblyAPI.getCompanies(results);
-            setCompanyList(response);
-            return response;
-        }
+    async function handleSearch(results) {
+        const response = await JoblyAPI.getCompanies(results);
+        setCompanyList(response);
+        return response;
+    }
 
 
     if (!companyList) {
         return <h1>Loading...</h1>
-     }
+    }
 
-     return (
+    return (
         <div>
-            <SearchBar handleSearch={handleSearch}/>
+            <SearchBar handleSearch={handleSearch} />
+            
             {companyList.map((c) => {
-                return <Company  comp={c}/>
+                return <Link className="CompanyLink" key={c.handle} to={`${c.handle}`}><Company key={c.handle} comp={c} /></Link>
             })}
         </div>
     )

@@ -20,7 +20,6 @@ function CompanyDetail() {
         return <h1>Loading...</h1>
      }
 
-     console.log(companyDetail.jobs);
     return (
         <div>
             <h1>{companyDetail.name}</h1>

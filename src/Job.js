@@ -2,14 +2,14 @@ import React from "react";
 import './Job.css'
 
 function Job({ job }) {
-    console.log('job ==>', job);
-
     return (
         <div className="Job">
-            <h3>{job.title}</h3>
-            {/* TODO: figure out how to display the company handle on the jobs.js page, but not the companyDetails page */}
-            <h3>Salary: {job.salary}</h3>
-            <h3>Equity: {job.equity}</h3>
+            <h2>{job.title}</h2>
+            <h3>{job.companyHandle}</h3>
+            {job.salary && 
+                <h1>💸💸Salary: {job.salary}💸💸</h1>
+            }
+            <h4>💹💹Equity: {job.equity}💹💹</h4>
         </div>
     )
 }

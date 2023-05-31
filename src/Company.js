@@ -17,11 +17,3 @@ function Company({comp}){
 }
 
 export default Company;
-
-// {
-
-//     "name": "Anderson, Arias and Morrow",
-//     "description": "Somebody program how I. Face give away discussion view act inside. Your official relationship administration here.",
-
-//     "logoUrl": "/logos/logo3.png"
-// }

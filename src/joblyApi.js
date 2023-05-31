@@ -52,26 +52,29 @@ class JoblyApi {
    * Accepts argument to filter results from SearchBar
    */
 
-  static async getCompanies({searchTerm}=true) {
-    // if (searchTerm){
-    //   searchTerm = "?nameLike=" + searchTerm
-    // }else{
-    //   searchTerm = '?'
-    // }
+  static async getCompanies({searchTerm} = '') {
 
-    if (!searchTerm){
+    if (!searchTerm) {
       let res = await this.request(`companies/`);
       return res.companies;
-    }else{
+    } else {
       let res = await this.request(`companies/?nameLike=${searchTerm}`);
       return res.companies;
     }
 
-
-
   }
 
+  static async getJobs({searchTerm}=true) {
 
+    if (!searchTerm) {
+      let res = await this.request(`jobs/`);
+      return res.jobs;
+    } else {
+      let res = await this.request(`jobs/?title=${searchTerm}`);
+      return res.jobs;
+    }
+  }
+  
 }
 
 export default JoblyApi

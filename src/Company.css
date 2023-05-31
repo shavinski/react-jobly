@@ -2,3 +2,9 @@
     border: solid black;
     margin: 1em;
 }
+
+.CompanyLink {
+    text-decoration: none;
+    color: inherit;
+}
+
