@@ -3,7 +3,7 @@ import React, { useState } from "react";
 /** Form for searching companies and/or jobs
  *
  * Has state for the searchTerm characters
- * sends query to fn rec'd from parent.
+ * sends query to fn received from parent.
  *
  */
 
@@ -19,7 +19,7 @@ function SearchBar({handleSearch}) {
     setFormData(initialState);
   }
 
-  /** Update local state w/curr state of input elem */
+  /** Update local state w/curr state of input */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(fData => ({

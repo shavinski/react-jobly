@@ -3,6 +3,17 @@ import JoblyAPI from "./joblyApi";
 import Job from "./Job";
 import SearchBar from './SearchBar'
 
+/**Jobs component:
+ * 
+ * Props: 
+ * - none
+ * 
+ * State:
+ * - jobList array: list of props to pass into Job to create components
+ * 
+ * Jobly -> Jobs -> Job 
+ */
+
 function Jobs() {
     const [jobList, setJobList] = useState([]);
 

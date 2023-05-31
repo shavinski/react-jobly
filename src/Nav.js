@@ -1,10 +1,7 @@
 import { NavLink } from "react-router-dom"
 import "./Nav.css"
 
-/**
- * 
- * 
- */
+/** Nav Bar */
 function Nav() {
  
   return (
