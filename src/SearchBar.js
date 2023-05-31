@@ -12,24 +12,21 @@ import React, { useState } from "react";
  */
 
 function SearchBar({handleSearch}) {
-  const initialState = { searchTerm: ""};
-  const [formData, setFormData] = useState(initialState);
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   /** Send {searchTerm: value} to parent
    *    & clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSearch(formData);
-    setFormData(initialState);
+    handleSearch(searchTerm || undefined);
   }
 
-  /** Update local state w/curr state of input */
+  /** Update local state w/curr state of input*/
   function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData(fData => ({
-      ...fData,
-      [name]: value,
-    }));
+    const searchTerm = evt.target.value;
+    console.log("SearchTerm ==>", searchTerm)
+    setSearchTerm(searchTerm);
   }
 
   /** render form */
@@ -42,7 +39,7 @@ function SearchBar({handleSearch}) {
           placeholder="Enter Search Term..."
           id="searchTerm"
           name="searchTerm"
-          value={formData.searchTerm}
+          value={searchTerm}
           onChange={handleChange}
         />
         <button className="btn btn-primary btn-sm">Search</button>

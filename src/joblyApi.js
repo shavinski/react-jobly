@@ -15,7 +15,8 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  static token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
@@ -24,9 +25,8 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = (method === "get")
-        ? data
-        : {};
+    const params = method === "get" ? data : {};
+    console.log("params", params)
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -39,42 +39,52 @@ class JoblyApi {
 
   // Individual API routes
 
-  /** Get details on a company by handle. */
+  /** Get details on a company by handle.
+   *
+   * Accepts:
+   * -Company handle
+   *
+   * Returns:
+   * - A company object that contains:
+   *   { handle, name, description, numEmployees, logoUrl, jobs}
+   *      where jobs = [{ id, title, salary, equity, companyHandle, companyName }...]
+   */
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
+    console.log("res.company ===>", res.company);
     return res.company;
   }
 
-
   /** Get companies.
-   * 
-   * Accepts argument to filter results from SearchBar
+   *
+   * Accepts argument to filter results from SearchBar.
+   * If no argument passed, all companies are returned.
+   *
+   * Returns an array of company objects that contain:
+   * - [{ handle, name, description, numEmployees, logoUrl }...]
    */
 
-  static async getCompanies({searchTerm} = '') {
+  static async getCompanies(nameLike) {
+    let res = await this.request(`companies/`, { nameLike });
 
-    if (!searchTerm) {
-      let res = await this.request(`companies/`);
-      return res.companies;
-    } else {
-      let res = await this.request(`companies/?nameLike=${searchTerm}`);
-      return res.companies;
-    }
-
+    return res.companies;
   }
 
-  static async getJobs({searchTerm}=true) {
+  /** Get Jobs.
+   *
+   * Accepts argument to filter results from SearchBar
+   *
+   * Returns an array of job objects from the API :
+   * - [{ id, title, salary, equity, companyHandle, companyName }...]
+   */
+  static async getJobs(title) {
+    console.log("what the hell is this?", title);
+    console.log("what the hell is this?", { title });
 
-    if (!searchTerm) {
-      let res = await this.request(`jobs/`);
-      return res.jobs;
-    } else {
-      let res = await this.request(`jobs/?title=${searchTerm}`);
-      return res.jobs;
-    }
+    let res = await this.request(`jobs/`, { title });
+    return res.jobs;
   }
-  
 }
 
-export default JoblyApi
+export default JoblyApi;

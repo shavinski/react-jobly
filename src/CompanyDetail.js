@@ -34,8 +34,8 @@ function CompanyDetail() {
 
     return (
         <div className="companyContainer">
-            <h1>{companyDetail.name}</h1>
-            <h3>{companyDetail.description}</h3>
+            <h2>{companyDetail.name}</h2>
+            <h4>{companyDetail.description}</h4>
             {companyDetail.jobs.map((j) => {
                 return <Job job={j} key={j.id} />
             })}

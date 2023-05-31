@@ -5,33 +5,34 @@ import Company from "./Company";
 import SearchBar from "./SearchBar";
 import "./Companies.css";
 
-/** Loads company details 
- * 
- * * Props: 
+/** Loads company details
+ *
+ * * Props:
  * - none
- * 
- * App -> Companies 
+ *
+ * App -> Companies
  */
 
 function Companies() {
   const [companyList, setCompanyList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getCompanies() {
       const response = await JoblyAPI.getCompanies();
       setCompanyList(response);
-      return response;
+      setIsLoading(false);
     }
+
     getCompanies();
   }, []);
 
   async function handleSearch(results) {
     const response = await JoblyAPI.getCompanies(results);
     setCompanyList(response);
-    return response;
   }
 
-  if (!companyList) {
+  if (isLoading) {
     return <h1>Loading...</h1>;
   }
 
