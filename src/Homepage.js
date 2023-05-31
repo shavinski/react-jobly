@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Nav from "./Nav";
-import JoblyApi from "./JoblyApi";
+import JoblyApi from "./joblyApi";
 
 /**
  *

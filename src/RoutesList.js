@@ -7,14 +7,12 @@ import Homepage from "./Homepage";
 
 function RoutesList() {
   return (
-    
         <Routes>
           <Route path='/' element={<Homepage />} />{" "}
           <Route path='/companies' element={<Companies />} />{" "}
           <Route path='/jobs' element={<Jobs />} />{" "}
-          <Route path='/companies/:compName' element={<CompanyDetail />} />
+          <Route path='/companies/:handle' element={<CompanyDetail />} />
         </Routes>
-
   );
 }
 
