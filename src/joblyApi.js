@@ -47,14 +47,31 @@ class JoblyApi {
   }
 
 
-  /** Get all companies. */
+  /** Get companies.
+   * 
+   * Accepts argument to filter results from SearchBar
+   */
 
-  static async getAllCompanies() {
-    let res = await this.request(`companies/`);
-    return res.company;
+  static async getCompanies({searchTerm}=true) {
+    // if (searchTerm){
+    //   searchTerm = "?nameLike=" + searchTerm
+    // }else{
+    //   searchTerm = '?'
+    // }
+
+    if (!searchTerm){
+      let res = await this.request(`companies/`);
+      return res.companies;
+    }else{
+      let res = await this.request(`companies/?nameLike=${searchTerm}`);
+      return res.companies;
+    }
+
+
+
   }
 
-  
+
 }
 
 export default JoblyApi
