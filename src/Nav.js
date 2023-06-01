@@ -22,21 +22,45 @@ import userContext from "./userContext"
 
 */
 function Nav() {
-  
- const {user} = useContext(userContext)
- console.log("NAVBAR USER from context", user)
+
+  const { currentUser } = useContext(userContext);
+
   return (
 
     <nav className="Nav">
-      <NavLink to="/" end>
-        Jobly
-      </NavLink>
-      <NavLink to="/companies" end>
-        Companies
-      </NavLink>
-      <NavLink to="/jobs" end>
-        Jobs
-      </NavLink>
+      {currentUser &&
+        <div>
+          <NavLink to="/" end>
+            Jobly
+          </NavLink>
+          <NavLink to="/companies" end>
+            Companies
+          </NavLink>
+          <NavLink to="/jobs" end>
+            Jobs
+          </NavLink>
+          <NavLink to="/profile" end>
+            Profile
+          </NavLink>
+          <NavLink to="/" end>
+            Log out {currentUser.username}
+          </NavLink>
+        </div>
+      }
+
+      {!currentUser &&
+        <div className="Nav">
+          <NavLink to="/" end>
+            Jobly
+          </NavLink>
+          <NavLink to="/login" end>
+            Login
+          </NavLink>
+          <NavLink to="/signup" end>
+            Signup
+          </NavLink>
+        </div>
+      }
     </nav>
   );
 }

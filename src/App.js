@@ -40,7 +40,6 @@ function App() {
   const [token, setToken] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
 
-
   useEffect(() => {
     //QUESTION: JWT-Decode here or APIclass?
 
@@ -49,7 +48,6 @@ function App() {
       const username = JoblyApi.decodeToken(token);
       const response = await JoblyApi.getUser(username);
       setCurrentUser(response);
-      
     }}
 
     getUser();
@@ -69,6 +67,7 @@ function App() {
   return (
     <div className='App'>
       <userContext.Provider value={{currentUser}}>
+        {console.log('currentUser App.js =>', currentUser)}
       <BrowserRouter>
         <Nav />
         <RoutesList login={login} signup={signup}/>

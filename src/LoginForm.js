@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //     - [ ] alert alert-danger 
 //       - Insomnia returns {error:{message:"invalid username/password", Status:401}}
@@ -13,14 +14,17 @@ import React, { useState } from "react";
  */
 
 function LoginForm({ login }) {
+    const navigate = useNavigate();
     const initialState = { username: '', password: '' };
     const [formData, setFormData] = useState(initialState);
+
 
     /** Send {formData: username} to parent
      *    & clear form. */
     function handleSubmit(evt) {
         evt.preventDefault();
         login(formData);
+        navigate("/");
     }
 
     /** Update local state w/curr state of input*/

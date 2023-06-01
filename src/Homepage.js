@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Nav from "./Nav";
+import { Link } from "react-router-dom";
 import JoblyApi from "./joblyApi";
+import userContext from "./userContext";
+
 
 /** Loads starting homepage
  *
@@ -12,13 +15,28 @@ import JoblyApi from "./joblyApi";
  */
 
 function Homepage() {
+  const { currentUser } = useContext(userContext);
+
   return (
     <div>
-      <h1>TIME TO GET A JOB</h1>
-      <p>
-        All the jobs, every one of them, in one convenient place. You're
-        welcome.
-      </p>
+        <div>
+          <h1>TIME TO GET A JOB</h1>
+          <p>
+            All the jobs, every one of them, in one convenient place. You're
+            welcome.
+          </p>
+        </div>
+        {currentUser 
+          ? 
+          <h2>Welcome back, {currentUser.firstName}</h2>
+          :
+          <div>
+            <Link to='/login'><button>Login</button></Link>
+            <Link to='/signup'><button>Signup</button></Link>
+          </div>
+        }
+        
+
     </div>
   );
 }
