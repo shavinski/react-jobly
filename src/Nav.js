@@ -6,22 +6,12 @@ import userContext from "./userContext"
 /** Renders nav bar with navlinks 
  * 
  * Returns:
- * - Navbar according to logged in vs logged out
+ * - Navbar according to logged in vs logged out (derived from userContext)
  * 
  * App -> Nav
  * 
- * **NavBar**
-- [ ] Logic: If currUser not present, load buttons, else load: 
-  - [ ] Jobly, Companies, Jobs, Profile, Log Out
-- [ ] Logic to check for useContext:
-  currUser 
-  ? 
-  display not-logged-in JSX
-  : 
-  display logged in JSX
-
 */
-function Nav() {
+function Nav({logout}) {
 
   const { currentUser } = useContext(userContext);
 
@@ -34,15 +24,15 @@ function Nav() {
             Jobly
           </NavLink>
           <NavLink to="/companies" end>
-            Companies
+            CompanyList
           </NavLink>
           <NavLink to="/jobs" end>
-            Jobs
+            JobList
           </NavLink>
           <NavLink to="/profile" end>
             Profile
           </NavLink>
-          <NavLink to="/" end>
+          <NavLink to="/" onClick={logout} end>
             Log out {currentUser.username}
           </NavLink>
         </div>

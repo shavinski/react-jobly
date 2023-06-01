@@ -2,7 +2,6 @@
 import axios from "axios";
 import jwt_Decode from "jwt-decode";
 
-
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 /** API Class.
@@ -17,10 +16,6 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  // static token = 
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static token = "";
 
@@ -29,11 +24,11 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = method === "get" ? data : {}; 
+    const params = method === "get" ? data : {};
     // if data is empty(falsey) => companies/
     // if data not empty => companies/{data}
 
-    // with GET, data is empty, params is not 
+    // with GET, data is empty, params is not
     // with anything other than GET params is empty and data is not
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -44,20 +39,19 @@ class JoblyApi {
     }
   }
 
-  // Individual API routes
+  ///////////////// Individual API routes /////////////////
 
-  // FIXME: Note: A falsy or malformed token will throw an InvalidTokenError error. from docs
+  /** Takes in api token, returns decoded username. */
+
   static decodeToken(token) {
-
-      const { username } = jwt_Decode(token)
-      return username;
-    }
-   
+    const { username } = jwt_Decode(token);
+    return username;
+  }
 
   /** Get details on a company by handle.
    *
    * Accepts:
-   * -Company handle
+   * -CompanyCard handle
    *
    * Returns:
    * - A company object that contains:
@@ -85,7 +79,7 @@ class JoblyApi {
     return res.companies;
   }
 
-  /** Get Jobs.
+  /** Get JobList.
    *
    * Accepts argument to filter results from SearchBar
    *
@@ -93,46 +87,49 @@ class JoblyApi {
    * - [{ id, title, salary, equity, companyHandle, companyName }...]
    */
 
-  // /jobs?title='apple' [GET]
   static async getJobs(title) {
-    console.log("what the hell is this?", title);
-    console.log("what the hell is this?", { title });
-
     let res = await this.request(`jobs/`, { title });
     return res.jobs;
   }
 
   /** Login user and get token
-   * 
+   *
    * Input: data => {username: 'testUser', password:'password'}
-   * 
-   * sets static token to new token and returns token 
+   *
+   * sets static token to new token and returns token
    */
 
-  // delete or patch just switch "post" to "delete" or "patch"
   static async login(data) {
-    let res = await this.request(`auth/token/`, data , "post");
-    this.token = res.token
+    let res = await this.request(`auth/token/`, data, "post");
+    this.token = res.token;
     return res.token;
   }
 
-  /** Login user and get token
+  /** Register user with data.
+   *
+   * Accepts:
+   *          {
+              "username", 
+              "password", 
+	            "firstName", 
+		          "lastName", 
+	            "email", 
+   *              }
+   *
+   * Returns: 
+   * - Token
    * 
-   * Input: data => {username: 'testUser', password:'password'}
-   * 
-   * sets static token to new token and returns token 
-   */
-
-  // delete or patch just switch "post" to "delete" or "patch"
+   * Throws BadRequestError on duplicate usernames.
+   **/
   static async signup(data) {
-    let res = await this.request(`auth/register`, data , "post");
-    this.token = res.token
+    let res = await this.request(`auth/register`, data, "post");
+    this.token = res.token;
     return res.token;
   }
 
   /** Get user details
    * 
-   * Input: username
+   * Input: username from decoded token
    * 
    * returns => user object =>
    *              {
@@ -147,9 +144,14 @@ class JoblyApi {
 
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
-    return res.user
+    return res.user;
   }
 
+  /** Clears token value on logout */
+
+  static logout() {
+    this.token = "";
+  }
 }
 
 export default JoblyApi;

@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import jwt_Decode from "jwt-decode";
 import Nav from "./Nav";
 import JoblyApi from "./joblyApi";
-import userContext from './userContext'
+import userContext from "./userContext";
 
 /** Loads initial app
  * 
@@ -37,21 +37,22 @@ import userContext from './userContext'
  */
 
 function App() {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     //QUESTION: JWT-Decode here or APIclass?
 
     async function getUser() {
-      if (token){ 
-      const username = JoblyApi.decodeToken(token);
-      const response = await JoblyApi.getUser(username);
-      setCurrentUser(response);
-    }}
+      if (token) {
+        const username = JoblyApi.decodeToken(token);
+        const response = await JoblyApi.getUser(username);
+        setCurrentUser(response);
+      }
+    }
 
     getUser();
-  },[token])
+  }, [token]);
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);
@@ -60,18 +61,21 @@ function App() {
 
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
-    alert(token)
     setToken(token);
   }
 
+  function logout() {
+    JoblyApi.logout();
+    setToken("");
+    setCurrentUser(null)
+  }
   return (
     <div className='App'>
-      <userContext.Provider value={{currentUser}}>
-        {console.log('currentUser App.js =>', currentUser)}
-      <BrowserRouter>
-        <Nav />
-        <RoutesList login={login} signup={signup}/>
-      </BrowserRouter>
+      <userContext.Provider value={{ currentUser }}>
+        <BrowserRouter>
+          <Nav logout={logout}/>
+          <RoutesList login={login} signup={signup} />
+        </BrowserRouter>
       </userContext.Provider>
     </div>
   );

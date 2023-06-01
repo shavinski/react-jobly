@@ -1,7 +1,7 @@
 import React from "react";
 import {  Route, Routes } from "react-router-dom";
-import Jobs from "./Jobs";
-import Companies from "./Companies";
+import JobList from "./JobList";
+import CompanyList from "./CompanyList";
 import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
@@ -20,10 +20,10 @@ function RoutesList({login, signup}) {
         <Routes>
           <Route path='/login' element={<LoginForm login={login} />} />
           <Route path='/signup' element={<SignupForm signup={signup}/>} />
-          {/* <Route path='/profile' element={<Profile />} /> */}
+          <Route path='/profile' element={<SignupForm />} />
           <Route path='/' element={<Homepage />} />
-          <Route path='/companies' element={<Companies />} />
-          <Route path='/jobs' element={<Jobs />} />
+          <Route path='/companies' element={<CompanyList />} />
+          <Route path='/jobs' element={<JobList />} />
           <Route path='/companies/:handle' element={<CompanyDetail />} />
         </Routes>
   );

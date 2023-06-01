@@ -46,15 +46,15 @@ Write them forms, baby
 - [x] profile
 
 **Homepage**
-- [ ] Signup button
-- [ ] login button
-- [ ] Logic: If currUser not present, load buttons, else load:
+- [x] Signup button
+- [x] login button
+- [x] Logic: If currUser not present, load buttons, else load:
         "Jobly
         All the jobs in one, convenient place.
 
         Welcome Back, test!"
 
-- [ ] Logic to check for useContext:
+- [x] Logic to check for useContext:
   currUser 
   ? 
   display not-logged-in JSX
@@ -62,9 +62,9 @@ Write them forms, baby
   display logged in JSX
 
 **NavBar**
-- [ ] Logic: If currUser not present, load buttons, else load: 
-  - [ ] Jobly, Companies, Jobs, Profile, Log Out
-- [ ] Logic to check for useContext:
+- [x] Logic: If currUser not present, load buttons, else load: 
+  - [x] Jobly, CompanyList, JobList, Profile, Log Out
+- [x] Logic to check for useContext:
   currUser 
   ? 
   display not-logged-in JSX
@@ -95,7 +95,7 @@ UseEffect [token]
 
 
 **ADD THIS TO MOST THINGS**
-- [ ] Logic to check for useContext:
+-  Logic to check for useContext:
   currUser 
   ? 
   display not-logged-in JSX

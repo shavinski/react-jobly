@@ -1,18 +1,18 @@
 import React from "react"
-import './Company.css'
+import './CompanyCard.css'
 
 /** Design for company cards that load on /companies 
  * 
  * props: {comp} 
  * - will be an object with info about a single company
  * 
- * Companies -> Company 
+ * CompanyList -> CompanyCard 
  */
 
-function Company({comp}){
+function CompanyCard({comp}){
 
     return (
-        <div className="Company">
+        <div className="CompanyCard">
             <h2>{comp.name}</h2>
             <h4>{comp.description}</h4>
             {comp.logoUrl &&
@@ -21,4 +21,4 @@ function Company({comp}){
     )
 }
 
-export default Company;
+export default CompanyCard;

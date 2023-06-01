@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import JoblyAPI from "./joblyApi";
-import Job from "./Job";
-import './Companies.css'
+import JobCard from "./JobCard";
+import './CompanyList.css'
 import { useParams } from "react-router-dom";
 
 /** Renders information on single company with all jobs listed by company
@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
  * State: companyDetail 
  * - should be an object with company data
  * 
- *  Companies -> CompanyDetail -> Job
+ *  CompanyList -> CompanyDetail -> JobCard
  */
 
 function CompanyDetail() {
@@ -37,7 +37,7 @@ function CompanyDetail() {
             <h2>{companyDetail.name}</h2>
             <h4>{companyDetail.description}</h4>
             {companyDetail.jobs.map((j) => {
-                return <Job job={j} key={j.id} />
+                return <JobCard job={j} key={j.id} />
             })}
         </div>
     )

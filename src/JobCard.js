@@ -1,17 +1,17 @@
 import React from "react";
-import './Job.css'
+import './JobCard.css'
 
 /** Renders a job card with info
  * 
  * props: {job} 
  * - job will be an object with all info about a single job posting
  * 
- * CompanyDetail -> Job
+ * CompanyDetail -> JobCard
  */
 
-function Job({ job }) {
+function JobCard({ job }) {
     return (
-        <div className="Job">
+        <div className="JobCard">
             <h2>{job.title}</h2>
             <h3>{job.companyHandle}</h3>
             {job.salary && 
@@ -22,4 +22,4 @@ function Job({ job }) {
     )
 }
 
-export default Job;
+export default JobCard;

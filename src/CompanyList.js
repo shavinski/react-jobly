@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import JoblyAPI from "./joblyApi";
-import Company from "./Company";
+import CompanyCard from "./CompanyCard";
 import SearchBar from "./SearchBar";
-import "./Companies.css";
+import "./CompanyList.css";
+import userContext from './userContext'
+import {Navigate} from 'react-router-dom'
 
 /** Loads company details
  *
  * * Props:
  * - none
  *
- * App -> Companies
+ * App -> CompanyList
  */
 
-//TODO: change to CompanyLIst
-function Companies() {
+
+function CompanyList() {
   const [companyList, setCompanyList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useContext(userContext);
 
   useEffect(() => {
     async function getCompanies() {
@@ -37,14 +40,16 @@ function Companies() {
     return <h1>Loading...</h1>;
   }
 
-  //TODO: change Company to CompanyCard 
+  if (!currentUser) {
+    return <Navigate to="/" />; }
+
   return (
     <div className='companyContainer'>
       <SearchBar handleSearch={handleSearch} />
       {companyList.map((c) => {
         return (
           <Link className='CompanyLink' key={c.handle} to={`${c.handle}`}>
-            <Company key={c.handle} comp={c} />
+            <CompanyCard key={c.handle} comp={c} />
           </Link>
         );
       })}
@@ -52,4 +57,4 @@ function Companies() {
   );
 }
 
-export default Companies;
+export default CompanyList;

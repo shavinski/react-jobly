@@ -8,7 +8,7 @@ import React, { useState } from "react";
  * State: formData
  * - sends query to fn received from parent.
  *
- * {Companies, Jobs} -> SearchBar
+ * {CompanyList, JobList} -> SearchBar
  */
 
 function SearchBar({handleSearch}) {
@@ -25,7 +25,6 @@ function SearchBar({handleSearch}) {
   /** Update local state w/curr state of input*/
   function handleChange(evt) {
     const searchTerm = evt.target.value;
-    console.log("SearchTerm ==>", searchTerm)
     setSearchTerm(searchTerm);
   }
 
