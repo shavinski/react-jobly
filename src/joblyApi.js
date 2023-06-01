@@ -46,6 +46,7 @@ class JoblyApi {
 
   // Individual API routes
 
+  // FIXME: Note: A falsy or malformed token will throw an InvalidTokenError error. from docs
   static decodeToken(token) {
     if(token) {
       const { username } = jwt_Decode(token)
