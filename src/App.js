@@ -41,13 +41,16 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    //QUESTION: JWT-Decode here or APIclass?
+    //FIXME: move the JWT-Decode to this file
 
     async function getUser() {
       if (token) {
         const username = JoblyApi.decodeToken(token);
-        const response = await JoblyApi.getUser(username);
-        setCurrentUser(response);
+        JoblyApi.token = token;
+        const userData = await JoblyApi.getUser(username);
+        setCurrentUser(userData);
+      } else {
+        setCurrentUser(null)
       }
     }
 
@@ -67,8 +70,8 @@ function App() {
   function logout() {
     JoblyApi.logout();
     setToken("");
-    setCurrentUser(null)
   }
+
   return (
     <div className='App'>
       <userContext.Provider value={{ currentUser }}>

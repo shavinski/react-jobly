@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-//     - [ ] alert alert-danger 
-//       - Insomnia returns {error:{message:"invalid username/password", Status:401}}
-
-
 /** Loads login form page 
  * 
  * Props:
@@ -21,9 +17,9 @@ function LoginForm({ login }) {
 
     /** Send {formData: username} to parent
      *    & clear form. */
-    function handleSubmit(evt) {
+    async function handleSubmit(evt) {
         evt.preventDefault();
-        login(formData);
+        await login(formData);
         navigate("/");
     }
 

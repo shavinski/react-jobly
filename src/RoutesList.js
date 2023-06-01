@@ -14,6 +14,7 @@ import SignupForm from './SignupForm'
  *
  * App -> RoutesList
  */
+//TODO: move the route protection from companylist and joblist 
 
 function RoutesList({login, signup}) {
   return (

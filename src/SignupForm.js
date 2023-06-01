@@ -23,9 +23,9 @@ function SignUpForm({ signup, editProfile }) {
 
   /** Send {formData: username} to parent
    *    & clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
+    await signup(formData);
     navigate("/");
   }
 
