@@ -16,17 +16,17 @@ React-Jobly Authorization, Tokens, and Things Elie Warned us About...
 **Step Two: Update Your Routes File**
 Write them forms, baby
 - [x] login form
-  - [ ] Props: login Fn
-  - [ ] Fields:
-    - [ ] Username
-    - [ ] Password
+  - [x] Props: login Fn
+  - [x] Fields:
+    - [x] Username
+    - [x] Password
   - [ ] FlashMessage
     - [ ] alert alert-danger 
       - Insomnia returns {error:{message:"invalid username/password", Status:401}}
 
-- [ ] signUp / edit form
+- [ ] Signup / edit form
   - [ ] Props: 
-    - [ ] function (either signup or patch)
+    - [ ] function (either Signup or patch)
     - [ ] currUser = null
   - [ ] Fields:
     - [ ] Username
@@ -41,12 +41,12 @@ Write them forms, baby
 
 
 **Routs**
-- [ ] signUp
+- [ ] Signup
 - [ ] login
 - [ ] profile
 
 **Homepage**
-- [ ] signUp button
+- [ ] Signup button
 - [ ] login button
 - [ ] Logic: If currUser not present, load buttons, else load:
         "Jobly
@@ -78,7 +78,7 @@ Write them forms, baby
 Token State
 CurrUser State
 
--signup
+-Signup
   - accepts: formData
     - Make the axios post req.
       - setToken to response

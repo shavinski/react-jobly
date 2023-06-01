@@ -4,7 +4,8 @@ import Jobs from "./Jobs";
 import Companies from "./Companies";
 import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
-import Login from "./Login";
+import LoginForm from "./LoginForm";
+import SignupForm from './SignupForm'
 
 /** Makes routes for application 
  *  
@@ -14,12 +15,12 @@ import Login from "./Login";
  * App -> RoutesList
  */
 
-function RoutesList({login}) {
+function RoutesList({login, signup}) {
   return (
         <Routes>
-          <Route path='/login' element={<Login login={login}/>} />
-          {/* <Route path='/signup' element={<Signup />} />
-          <Route path='/profile' element={<Profile />} /> */}
+          <Route path='/login' element={<LoginForm login={login} />} />
+          <Route path='/signup' element={<SignupForm signup={signup}/>} />
+          {/* <Route path='/profile' element={<Profile />} /> */}
           <Route path='/' element={<Homepage />} />
           <Route path='/companies' element={<Companies />} />
           <Route path='/jobs' element={<Jobs />} />

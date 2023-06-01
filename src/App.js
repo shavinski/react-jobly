@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
 import RoutesList from "./RoutesList";
 import React, { useState, useEffect } from "react";
@@ -11,6 +12,14 @@ import JoblyApi from "./joblyApi";
  * - none
  * 
  * App -> { Nav, RoutesList } 
+ * 
+ * 
+ * 
+ * 
+UseEffect [token]
+- json-decode(token) => username
+    - send GET w/username
+      - setCurrUser with response
  */
 
 function App() {
@@ -19,14 +28,20 @@ function App() {
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);
-    console.log(token);
+    setToken(token);
+  }
+
+  async function signup(formData) {
+    const token = await JoblyApi.signup(formData);
+    alert(token)
+    setToken(token);
   }
 
   return (
     <div className='App'>
       <BrowserRouter>
         <Nav />
-        <RoutesList login={login}/>
+        <RoutesList login={login} signup={signup}/>
       </BrowserRouter>
     </div>
   );

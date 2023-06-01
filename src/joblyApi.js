@@ -105,7 +105,19 @@ class JoblyApi {
     this.token = res.token
     return res.token;
   }
+  /** Login user and get token
+   * 
+   * Input: data => {username: 'testUser', password:'password'}
+   * 
+   * sets static token to new token and returns token 
+   */
 
+  // delete or patch just switch "post" to "delete" or "patch"
+  static async signup(data) {
+    let res = await this.request(`auth/register`, data , "post");
+    this.token = res.token
+    return res.token;
+  }
 
 }
 

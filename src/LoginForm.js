@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-// Write them forms, baby
-// - [x] login form
-//   - [ ] Props: login Fn
-//   - [ ] Fields:
-//     - [ ] Username
-//     - [ ] Password
-//   - [ ] FlashMessage
+
 //     - [ ] alert alert-danger 
 //       - Insomnia returns {error:{message:"invalid username/password", Status:401}}
 
@@ -38,9 +32,10 @@ function LoginForm({ login }) {
         })
         )
     }
-
+       
     return (
         <div>
+            <h3>Log in</h3>
             <form>
                 <div>
                     <label htmlFor="username">Username</label>
