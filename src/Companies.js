@@ -13,6 +13,7 @@ import "./Companies.css";
  * App -> Companies
  */
 
+//TODO: change to CompanyLIst
 function Companies() {
   const [companyList, setCompanyList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ function Companies() {
     return <h1>Loading...</h1>;
   }
 
+  //TODO: change Company to CompanyCard 
   return (
     <div className='companyContainer'>
       <SearchBar handleSearch={handleSearch} />

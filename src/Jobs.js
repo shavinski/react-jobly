@@ -15,6 +15,7 @@ import "./Jobs.css";
  * Jobly -> Jobs -> Job
  */
 
+//TODO: JobsList change 
 function Jobs() {
   const [jobList, setJobList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ function Jobs() {
     return <h1>Loading...</h1>;
   }
 
+//TODO: JobCard change 
   return (
     <div className='jobContainer'>
       <SearchBar handleSearch={handleSearch} />

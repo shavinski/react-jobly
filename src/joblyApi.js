@@ -25,9 +25,12 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = method === "get" ? data : {};
-    console.log("params", params)
+    const params = method === "get" ? data : {}; 
+    // if data is empty(falsey) => companies/
+    // if data not empty => companies/{data}
 
+    // with GET, data is empty, params is not 
+    // with anything other than GET params is empty and data is not
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
@@ -52,7 +55,6 @@ class JoblyApi {
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
-    console.log("res.company ===>", res.company);
     return res.company;
   }
 
@@ -65,9 +67,9 @@ class JoblyApi {
    * - [{ handle, name, description, numEmployees, logoUrl }...]
    */
 
+  // /companies?nameLike='islandboii' [GET]
   static async getCompanies(nameLike) {
     let res = await this.request(`companies/`, { nameLike });
-
     return res.companies;
   }
 
@@ -78,6 +80,8 @@ class JoblyApi {
    * Returns an array of job objects from the API :
    * - [{ id, title, salary, equity, companyHandle, companyName }...]
    */
+
+  // /jobs?title='apple' [GET]
   static async getJobs(title) {
     console.log("what the hell is this?", title);
     console.log("what the hell is this?", { title });
@@ -85,6 +89,21 @@ class JoblyApi {
     let res = await this.request(`jobs/`, { title });
     return res.jobs;
   }
+
+  /** Login user and get token
+   * 
+   * Input: data => {username: 'testUser', password:'password'}
+   * 
+   * returns token 
+   */
+
+  // delete or patch just switch "post" to "delete" or "patch"
+  static async login(data) {
+    let res = await this.request(`auth/token/`, data , "post");
+    return res;
+  }
+
+
 }
 
 export default JoblyApi;
