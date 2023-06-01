@@ -47,14 +47,11 @@ class JoblyApi {
   // Individual API routes
 
   static decodeToken(token) {
-    if(token) {
+
       const { username } = jwt_Decode(token)
       return username;
-    } else {
-      console.log('token', token);
     }
-  } 
-
+   
 
   /** Get details on a company by handle.
    *
@@ -149,7 +146,6 @@ class JoblyApi {
 
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
-    console.log(res.user);
     return res
   }
 

@@ -15,7 +15,7 @@ React-Jobly Authorization, Tokens, and Things Elie Warned us About...
 
 **Step Two: Update Your Routes File**
 Write them forms, baby
-- [x] login form
+- [ ] login form
   - [x] Props: login Fn
   - [x] Fields:
     - [x] Username
@@ -25,25 +25,25 @@ Write them forms, baby
       - Insomnia returns {error:{message:"invalid username/password", Status:401}}
 
 - [ ] Signup / edit form
-  - [ ] Props: 
-    - [ ] function (either Signup or patch)
-    - [ ] currUser = null
-  - [ ] Fields:
-    - [ ] Username
-      - [ ] Add Logic: loggedIn ? disable input : enable/blank
-    - [ ] Password
-    - [ ] First Name
-    - [ ] Last Name
-    - [ ] Email
+  -[x] Props: 
+    -[x] function (either Signup or patch)
+    -[x] currUser = null
+  -[x] Fields:
+    -[x] Username
+      -[x] Add Logic: loggedIn ? disable input : enable/blank
+    -[x] Password
+    -[x] First Name
+    -[x] Last Name
+    -[x] Email
   - [ ] FlashMessage:
     - [ ] Array of error messages
  
 
 
 **Routs**
-- [ ] Signup
-- [ ] login
-- [ ] profile
+- [x] Signup
+- [x] login
+- [x] profile
 
 **Homepage**
 - [ ] Signup button

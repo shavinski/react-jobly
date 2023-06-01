@@ -6,21 +6,34 @@ import { BrowserRouter } from "react-router-dom";
 import jwt_Decode from "jwt-decode";
 import Nav from "./Nav";
 import JoblyApi from "./joblyApi";
+import userContext from './userContext'
 
 /** Loads initial app
  * 
  * * Props: 
  * - none
  * 
+ * State:
+ * - token: 
+ *    - default value ''
+ *    - set on successful login / signup 
+ * - currentUser: 
+ *    - default null 
+ *    - defined if token successfully received 
+ *    - Data example:
+*              {
+*              "username": "testUsername",
+		              "firstName": "test-fn",
+		              "lastName": "test-ln",
+		              "email": "test@gmail.com",
+		              "isAdmin": false,
+		              "applications": []
+*               }
+ * 
+ * Context: 
+ * - userContext contains currentUser data
+ * 
  * App -> { Nav, RoutesList } 
- * 
- * 
- * 
- * 
-UseEffect [token]
-- json-decode(token) => username
-    - send GET w/username
-      - setCurrUser with response
  */
 
 function App() {
@@ -29,14 +42,15 @@ function App() {
 
 
   useEffect(() => {
-    //FIXME: figure out how to get access with the GET request with no token,
-    // or finding a way pass a initial token 
+    //QUESTION: JWT-Decode here or APIclass?
+
     async function getUser() {
+      if (token){ 
       const username = JoblyApi.decodeToken(token);
-      console.log(username);
-      // const response = await JoblyApi.getUser(username);
-      // setCurrentUser(response);
-    }
+      const response = await JoblyApi.getUser(username);
+      setCurrentUser(response);
+      
+    }}
 
     getUser();
   },[token])
@@ -54,10 +68,12 @@ function App() {
 
   return (
     <div className='App'>
+      <userContext.Provider value={{currentUser}}>
       <BrowserRouter>
         <Nav />
         <RoutesList login={login} signup={signup}/>
       </BrowserRouter>
+      </userContext.Provider>
     </div>
   );
 }
