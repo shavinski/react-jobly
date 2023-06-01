@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
+import jwt_Decode from "jwt-decode";
+
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -43,6 +45,16 @@ class JoblyApi {
   }
 
   // Individual API routes
+
+  static decodeToken(token) {
+    if(token) {
+      const { username } = jwt_Decode(token)
+      return username;
+    } else {
+      console.log('token', token);
+    }
+  } 
+
 
   /** Get details on a company by handle.
    *
@@ -105,6 +117,7 @@ class JoblyApi {
     this.token = res.token
     return res.token;
   }
+
   /** Login user and get token
    * 
    * Input: data => {username: 'testUser', password:'password'}
@@ -117,6 +130,27 @@ class JoblyApi {
     let res = await this.request(`auth/register`, data , "post");
     this.token = res.token
     return res.token;
+  }
+
+  /** Get user details
+   * 
+   * Input: username
+   * 
+   * returns => user object =>
+   *              {
+   *              "username": "testUsername",
+		              "firstName": "test-fn",
+		              "lastName": "test-ln",
+		              "email": "test@gmail.com",
+		              "isAdmin": false,
+		              "applications": []
+   *               }
+   */
+
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
+    console.log(res.user);
+    return res
   }
 
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import RoutesList from "./RoutesList";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
+import jwt_Decode from "jwt-decode";
 import Nav from "./Nav";
 import JoblyApi from "./joblyApi";
 
@@ -25,6 +26,20 @@ UseEffect [token]
 function App() {
   const [token, setToken] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
+
+
+  useEffect(() => {
+    //FIXME: figure out how to get access with the GET request with no token,
+    // or finding a way pass a initial token 
+    async function getUser() {
+      const username = JoblyApi.decodeToken(token);
+      console.log(username);
+      // const response = await JoblyApi.getUser(username);
+      // setCurrentUser(response);
+    }
+
+    getUser();
+  },[token])
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);
