@@ -41,21 +41,29 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    //FIXME: move the JWT-Decode to this file
-
     async function getUser() {
+      // try {
+      //   localStorage.getItem('token')
+      // } catch (err) {
+      //   console.log(err.message);
+      // }
+      // const localToken = localStorage.getItem('token');
+      // console.log('localToken', localToken);
       if (token) {
-        const username = JoblyApi.decodeToken(token);
         JoblyApi.token = token;
+        localStorage.setItem('token', token)
+        const { username } = jwt_Decode(token);
         const userData = await JoblyApi.getUser(username);
         setCurrentUser(userData);
       } else {
+        localStorage.removeItem('token')
         setCurrentUser(null)
       }
     }
 
     getUser();
   }, [token]);
+
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);

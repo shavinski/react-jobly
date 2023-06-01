@@ -5,7 +5,6 @@ import CompanyCard from "./CompanyCard";
 import SearchBar from "./SearchBar";
 import "./CompanyList.css";
 import userContext from './userContext'
-import {Navigate} from 'react-router-dom'
 
 /** Loads company details
  *
@@ -15,11 +14,9 @@ import {Navigate} from 'react-router-dom'
  * App -> CompanyList
  */
 
-
 function CompanyList() {
   const [companyList, setCompanyList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { currentUser } = useContext(userContext);
 
   useEffect(() => {
     async function getCompanies() {
@@ -39,9 +36,6 @@ function CompanyList() {
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
-
-  if (!currentUser) {
-    return <Navigate to="/" />; }
 
   return (
     <div className='companyContainer'>

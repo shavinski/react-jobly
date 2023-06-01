@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
-import jwt_Decode from "jwt-decode";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -40,13 +39,6 @@ class JoblyApi {
   }
 
   ///////////////// Individual API routes /////////////////
-
-  /** Takes in api token, returns decoded username. */
-
-  static decodeToken(token) {
-    const { username } = jwt_Decode(token);
-    return username;
-  }
 
   /** Get details on a company by handle.
    *
