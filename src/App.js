@@ -23,11 +23,11 @@ import userContext from "./userContext";
  *    - Data example:
 *              {
 *              "username": "testUsername",
-		              "firstName": "test-fn",
-		              "lastName": "test-ln",
-		              "email": "test@gmail.com",
-		              "isAdmin": false,
-		              "applications": []
+                  "firstName": "test-fn",
+                  "lastName": "test-ln",
+                  "email": "test@gmail.com",
+                  "isAdmin": false,
+                  "applications": []
 *               }
  * 
  * Context: 
@@ -42,7 +42,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  
+
 
   useEffect(() => {
     async function getUser() {
@@ -73,24 +73,12 @@ function App() {
     setToken(token);
   }
 
+  console.log('currentUser =>', currentUser);
+
   async function editProfile(username, formData) {
-    const res = await JoblyApi.editProfile(username, formData);
-    setCurrentUser(res)
-    const { name, value } = res;
-    setCurrentUser((currData) => ({
-      ...currData,
-      [name]: value,
-    }));
-    // try {
-    //   console.log(res);
-    // } catch (err) {
-    //   console.log(err);
-    //   return (
-    //     <div>
-    //       {err.map((message, index) => <p key={index}>{message}</p>)}
-    //     </div>
-    //   )
-    // }
+    const newData = await JoblyApi.editProfile(username, formData);
+
+    setCurrentUser(newData);
   }
 
   function logout() {

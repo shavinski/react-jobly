@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 
 function SignUpForm({ signup }) {
   const navigate = useNavigate();
+
+  const [flashMessage, setFlashMessage] = useState(null);
   const initialState = {
     username: "",
     password: "",
@@ -21,13 +23,22 @@ function SignUpForm({ signup }) {
   };
   const [formData, setFormData] = useState(initialState);
 
+
   /** Send {formData: username} to parent
    *    & clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
-    navigate("/");
-  }
+    
+    try {
+      await signup(formData);
+      navigate("/");
+    } catch (err) {
+      setFlashMessage(err);
+      return;
+    }
+
+    setFlashMessage([]);
+}
 
   /** Update local state w/curr state of input*/
   function handleChange(evt) {
@@ -94,7 +105,13 @@ function SignUpForm({ signup }) {
           ></input>
         </div>
 
-        {/* TODO: Add conditional to display error message */}
+        {flashMessage && (
+          <div>
+            {flashMessage.map((message, index) => (
+              <p key={index}>{message}</p>
+            ))}
+          </div>
+        )}
 
         <button onClick={handleSubmit}>Submit</button>
       </form>

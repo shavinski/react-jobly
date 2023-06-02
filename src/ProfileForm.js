@@ -9,12 +9,12 @@ import userContext from "./userContext";
  *
  * RoutesList -> SignupForm
  *
- * FIXME: Just make a new one for Profile
  */
 
 function ProfileForm({ editProfile }) {
-  const [flashMessage, setFlashMessage] = useState(null);
   const { currentUser } = useContext(userContext);
+
+  const [flashMessage, setFlashMessage] = useState(null);
   const initialState = {
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
@@ -30,8 +30,10 @@ function ProfileForm({ editProfile }) {
       await editProfile(currentUser.username, formData);
     } catch (err) {
       setFlashMessage(err);
+      return;
     }
-    
+
+    setFlashMessage([]);
   }
 
   /** Update local state w/curr state of input*/

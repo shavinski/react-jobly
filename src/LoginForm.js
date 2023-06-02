@@ -11,16 +11,26 @@ import { useNavigate } from "react-router-dom";
 
 function LoginForm({ login }) {
     const navigate = useNavigate();
+
     const initialState = { username: '', password: '' };
     const [formData, setFormData] = useState(initialState);
+    const [flashMessage, setFlashMessage] = useState(null);
 
 
     /** Send {formData: username} to parent
      *    & clear form. */
     async function handleSubmit(evt) {
         evt.preventDefault();
-        await login(formData);
-        navigate("/");
+        
+        try {
+            await login(formData);
+            navigate("/");
+        } catch (err) {
+            setFlashMessage(err);
+            return;
+        }
+
+        setFlashMessage([]);
     }
 
     /** Update local state w/curr state of input*/
@@ -32,7 +42,7 @@ function LoginForm({ login }) {
         })
         )
     }
-       
+
     return (
         <div>
             <h3>Log in</h3>
@@ -57,7 +67,14 @@ function LoginForm({ login }) {
                 </div>
 
                 {/* TODO: Add conditional to display error message */}
-                
+                {flashMessage && (
+                    <div>
+                        {flashMessage.map((message, index) => (
+                            <p key={index}>{message}</p>
+                        ))}
+                    </div>
+                )}
+
                 <button onClick={handleSubmit}>Submit</button>
             </form>
         </div>

@@ -143,7 +143,6 @@ class JoblyApi {
     this.token = "";
   }
 
-
   /**
    *  Updates user data 
    * 
@@ -153,7 +152,7 @@ class JoblyApi {
    */
   static async editProfile(username, formData) {
     let res = await this.request(`users/${username}`, formData, 'patch');
-    return res
+    return res.user;
   }
 }
 
