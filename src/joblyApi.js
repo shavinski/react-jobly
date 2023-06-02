@@ -142,6 +142,11 @@ class JoblyApi {
   static logout() {
     this.token = "";
   }
+
+  static async editProfile(username, formData) {
+    let res = await this.request(`users/${username}`, formData, 'patch');
+    return res
+  }
 }
 
 export default JoblyApi;

@@ -6,6 +6,7 @@ import CompanyDetail from "./CompanyDetail";
 import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import ProfileForm from "./ProfileForm";
 import userContext from "./userContext";
 
 /** Makes routes for application
@@ -16,7 +17,7 @@ import userContext from "./userContext";
  * App -> RoutesList
  */
 
-function RoutesList({ login, signup }) {
+function RoutesList({ login, signup, editProfile }) {
   const { currentUser } = useContext(userContext);
 
   return (
@@ -29,7 +30,7 @@ function RoutesList({ login, signup }) {
         </>
       ) : (
         <>
-          <Route path='/profile' element={<SignupForm />} />
+          <Route path='/profile' element={<ProfileForm editProfile={editProfile} />} />
           <Route path='/companies' element={<CompanyList />} />
           <Route path='/jobs' element={<JobList />} />
           <Route path='/companies/:handle' element={<CompanyDetail />} />

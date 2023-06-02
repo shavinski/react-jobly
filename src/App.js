@@ -37,9 +37,11 @@ import userContext from "./userContext";
  */
 
 const LOCAL_STORAGE_TOKEN_KEY = "token";
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getUser() {
@@ -53,6 +55,8 @@ function App() {
         localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
         setCurrentUser(null);
       }
+
+      setIsLoading(false);
     }
 
     getUser();
@@ -68,9 +72,31 @@ function App() {
     setToken(token);
   }
 
+  async function editProfile(username, formData) {
+    try {
+      const res = await JoblyApi.editProfile(username, formData);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      return (
+        <div>
+          {err.map((message, index) => <p key={index}>{message}</p>)}
+        </div>
+      )
+    }
+  }
+
   function logout() {
     JoblyApi.logout();
     setToken("");
+  }
+
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
   }
 
   return (
@@ -78,7 +104,7 @@ function App() {
       <userContext.Provider value={{ currentUser }}>
         <BrowserRouter>
           <Nav logout={logout} />
-          <RoutesList login={login} signup={signup} />
+          <RoutesList login={login} signup={signup} editProfile={editProfile} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

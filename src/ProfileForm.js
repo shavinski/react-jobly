@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import userContext from "./userContext";
 
 /** Renders signup or profile form
  * 
@@ -11,23 +12,23 @@ import { useNavigate } from "react-router-dom";
  * FIXME: Just make a new one for Profile
  */
 
-function SignUpForm({ signup }) {
+function ProfileForm({ editProfile }) {
   const navigate = useNavigate();
+  const { currentUser } = useContext(userContext);
+  console.log('currentUSer PROFILEFORM', currentUser);
   const initialState = {
-    username: "",
-    password: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-  };
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
+    email: currentUser.email
+  }
   const [formData, setFormData] = useState(initialState);
 
   /** Send {formData: username} to parent
    *    & clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
-    navigate("/");
+    editProfile(currentUser.username, formData);
+    // navigate("/");
   }
 
   /** Update local state w/curr state of input*/
@@ -41,26 +42,15 @@ function SignUpForm({ signup }) {
 
   return (
     <div>
-      <h3>Sign up</h3>
+      <h3>Edit Profile</h3>
       <form>
         <div>
           <label htmlFor='username'>Username</label>
           <input
+            disabled
             id='username'
             name='username'
-            value={formData.username}
-            onChange={handleChange}
-          ></input>
-        </div>
-
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            id='password'
-            type='password'
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
+            value={currentUser.username}
           ></input>
         </div>
 
@@ -84,7 +74,7 @@ function SignUpForm({ signup }) {
             onChange={handleChange}
           ></input>
         </div>
-        
+
         <div>
           <label htmlFor='email'>Email</label>
           <input
@@ -103,4 +93,4 @@ function SignUpForm({ signup }) {
   );
 }
 
-export default SignUpForm;
+export default ProfileForm;
