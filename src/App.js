@@ -73,7 +73,6 @@ function App() {
     setToken(token);
   }
 
-  console.log('currentUser =>', currentUser);
 
   async function editProfile(username, formData) {
     const newData = await JoblyApi.editProfile(username, formData);
