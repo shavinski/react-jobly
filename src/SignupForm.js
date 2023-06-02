@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import './SignupForm.css'
 /** Renders signup or profile form
  * 
  * Props:
@@ -28,7 +28,7 @@ function SignUpForm({ signup }) {
    *    & clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    
+
     try {
       await signup(formData);
       navigate("/");
@@ -38,7 +38,7 @@ function SignUpForm({ signup }) {
     }
 
     setFlashMessage([]);
-}
+  }
 
   /** Update local state w/curr state of input*/
   function handleChange(evt) {
@@ -50,71 +50,101 @@ function SignUpForm({ signup }) {
   }
 
   return (
-    <div>
-      <h3>Sign up</h3>
-      <form>
-        <div>
-          <label htmlFor='username'>Username</label>
-          <input
-            id='username'
-            name='username'
-            value={formData.username}
-            onChange={handleChange}
-          ></input>
-        </div>
 
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            id='password'
-            type='password'
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
-          ></input>
-        </div>
+    <div className="SignupForm">
+      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <h3 className="title mt-5">Sign up</h3>
+        <div className="d-flex-column justify-content-center">
+          <form className="form bg-light">
+            <div className="form-group">
+              <div>
+                <label class="form-label mt-3" htmlFor='username'>Username</label>
+              </div>
+              <div>
+                <input
+                  class="form-control-sm"
+                  id='username'
+                  name='username'
+                  value={formData.username}
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
 
-        <div>
-          <label htmlFor='firstName'>First Name</label>
-          <input
-            id='firstName'
-            name='firstName'
-            value={formData.firstName}
-            onChange={handleChange}
-          ></input>
-        </div>
+            <div className="form-group">
+              <div>
+                <label class="form-label mt-3" htmlFor='password'>Password</label>
+              </div>
+              <div>
+                <input
+                  class="form-control-sm"
+                  id='password'
+                  type='password'
+                  name='password'
+                  value={formData.password}
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
 
-        <div>
-          <label htmlFor='lastName'>Last Name</label>
-          <input
-            id='lastName'
-            type='lastName'
-            name='lastName'
-            value={formData.lastName}
-            onChange={handleChange}
-          ></input>
-        </div>
-        
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            id='email'
-            name='email'
-            value={formData.email}
-            onChange={handleChange}
-          ></input>
-        </div>
+            <div className="form-group">
+              <div>
+                <label class="form-label mt-3" htmlFor='firstName'>First Name</label>
+              </div>
+              <div>
+                <input
+                  class="form-control-sm"
+                  id='firstName'
+                  name='firstName'
+                  value={formData.firstName}
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
 
-        {flashMessage && (
-          <div>
-            {flashMessage.map((message, index) => (
-              <p key={index}>{message}</p>
-            ))}
-          </div>
-        )}
+            <div className="form-group">
+              <div>
+                <label class="form-label mt-3" htmlFor='lastName'>Last Name</label>
+              </div>
+              <div>
+                <input
+                  class="form-control-sm"
+                  id='lastName'
+                  type='lastName'
+                  name='lastName'
+                  value={formData.lastName}
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
 
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
+            <div className="form-group">
+              <div>
+                <label class="form-label mt-3" htmlFor='email'>Email</label>
+              </div>
+              <div>
+                <input
+                  class="form-control-sm"
+                  id='email'
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
+
+            {flashMessage && (
+              <div>
+                {flashMessage.map((message, index) => (
+                  <p key={index}>{message}</p>
+                ))}
+              </div>
+            )}
+
+            <button className="btn btn-primary m-3" onClick={handleSubmit}>Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

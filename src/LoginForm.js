@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./LoginForm.css"
 /** Loads login form page 
  * 
  * Props:
@@ -21,7 +21,7 @@ function LoginForm({ login }) {
      *    & clear form. */
     async function handleSubmit(evt) {
         evt.preventDefault();
-        
+
         try {
             await login(formData);
             navigate("/");
@@ -44,10 +44,14 @@ function LoginForm({ login }) {
     }
 
     return (
-        <div>
-            <h3>Log in</h3>
+        <div className="d-flex-column justify-content-center m-5">
+
+            <div>
+                <h3 className="LoginForm-login">Log in</h3>
+            </div>
+
             <form>
-                <div>
+                <div className="form-group">
                     <label htmlFor="username">Username</label>
                     <input
                         id="username"
@@ -56,7 +60,7 @@ function LoginForm({ login }) {
                         onChange={handleChange}></input>
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
                         id="password"
@@ -64,9 +68,9 @@ function LoginForm({ login }) {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}></input>
+                    <small id="emailHelp" class="form-text text-muted">Never share your password!</small>
                 </div>
 
-                {/* TODO: Add conditional to display error message */}
                 {flashMessage && (
                     <div>
                         {flashMessage.map((message, index) => (
@@ -75,9 +79,9 @@ function LoginForm({ login }) {
                     </div>
                 )}
 
-                <button onClick={handleSubmit}>Submit</button>
+                <button className="btn btn-primary m-2" onClick={handleSubmit}>Submit</button>
             </form>
-        </div>
+        </div >
     )
 }
 

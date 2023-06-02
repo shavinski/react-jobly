@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import JoblyAPI from "./joblyApi";
 import CompanyCard from "./CompanyCard";
 import SearchBar from "./SearchBar";
 import "./CompanyList.css";
-import userContext from './userContext'
 
 /** Loads company details
  *

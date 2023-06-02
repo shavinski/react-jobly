@@ -1,0 +1,27 @@
+.Homepage-title {
+    color: white;
+    text-shadow:  -1.2px -1.2px 0 black,  
+                 1.2px -1.2px 0 black,
+                -1.2px 1.2px 0 black,
+                 1.2px 1.2px 0 black;
+}
+
+.Homepage-desc {
+    color: white;
+    text-shadow:  -1px -1px 0 black,  
+                 1px -1px 0 black,
+                -1px 1px 0 black,
+                 1px 1px 0 black;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: slateblue;
+    border-color: slateblue
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: rgb(185, 182, 201);
+    border-color: rgb(185, 182, 201);
+}

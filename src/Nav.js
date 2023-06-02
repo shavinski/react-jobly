@@ -11,13 +11,13 @@ import userContext from "./userContext"
  * App -> Nav
  * 
 */
-function Nav({logout}) {
+function Nav({ logout }) {
 
   const { currentUser } = useContext(userContext);
 
   return (
 
-    <nav className="Nav">
+    <nav className="d-flex">
       {currentUser &&
         <div>
           <NavLink to="/" end>
@@ -39,16 +39,22 @@ function Nav({logout}) {
       }
 
       {!currentUser &&
-        <div className="Nav">
-          <NavLink to="/" end>
-            Jobly
-          </NavLink>
-          <NavLink to="/login" end>
-            Login
-          </NavLink>
-          <NavLink to="/signup" end>
-            Signup
-          </NavLink>
+        <div className="d-flex">
+
+          <div className="mr-auto p-2">
+            <NavLink to="/" end>
+              Jobly
+            </NavLink>
+          </div>
+        
+          <div className="p-2">
+            <NavLink to="/login" end>
+              Login
+            </NavLink>
+            <NavLink to="/signup" end>
+              Signup
+            </NavLink>
+          </div>
         </div>
       }
     </nav>
