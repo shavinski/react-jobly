@@ -36,34 +36,27 @@ import userContext from "./userContext";
  * App -> { Nav, RoutesList } 
  */
 
+const LOCAL_STORAGE_TOKEN_KEY = "token";
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     async function getUser() {
-      // try {
-      //   localStorage.getItem('token')
-      // } catch (err) {
-      //   console.log(err.message);
-      // }
-      // const localToken = localStorage.getItem('token');
-      // console.log('localToken', localToken);
       if (token) {
         JoblyApi.token = token;
-        localStorage.setItem('token', token)
+        localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
         const { username } = jwt_Decode(token);
         const userData = await JoblyApi.getUser(username);
         setCurrentUser(userData);
       } else {
-        localStorage.removeItem('token')
-        setCurrentUser(null)
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
+        setCurrentUser(null);
       }
     }
 
     getUser();
   }, [token]);
-
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);
@@ -84,7 +77,7 @@ function App() {
     <div className='App'>
       <userContext.Provider value={{ currentUser }}>
         <BrowserRouter>
-          <Nav logout={logout}/>
+          <Nav logout={logout} />
           <RoutesList login={login} signup={signup} />
         </BrowserRouter>
       </userContext.Provider>
