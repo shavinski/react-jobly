@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
  * 
  * RoutesList -> SignupForm
  * 
+ * FIXME: Just make a new one for Profile
  */
 
 function SignUpForm({ signup, editProfile }) {
@@ -23,9 +24,9 @@ function SignUpForm({ signup, editProfile }) {
 
   /** Send {formData: username} to parent
    *    & clear form. */
-  async function handleSubmit(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
-    await signup(formData);
+    signup(formData);
     navigate("/");
   }
 
