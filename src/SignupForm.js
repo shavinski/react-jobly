@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
  * 
  * RoutesList -> SignupForm
  * 
- * FIXME: Just make a new one for Profile
  */
 
 function SignUpForm({ signup }) {

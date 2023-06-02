@@ -143,6 +143,14 @@ class JoblyApi {
     this.token = "";
   }
 
+
+  /**
+   *  Updates user data 
+   * 
+   * Returns:
+   * -JSON user data
+   * -Error Message(s)
+   */
   static async editProfile(username, formData) {
     let res = await this.request(`users/${username}`, formData, 'patch');
     return res

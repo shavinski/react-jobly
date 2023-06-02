@@ -3,32 +3,35 @@ import { useNavigate } from "react-router-dom";
 import userContext from "./userContext";
 
 /** Renders signup or profile form
- * 
+ *
  * Props:
  * - signup or editProfile function
- * 
+ *
  * RoutesList -> SignupForm
- * 
+ *
  * FIXME: Just make a new one for Profile
  */
 
 function ProfileForm({ editProfile }) {
-  const navigate = useNavigate();
+  const [flashMessage, setFlashMessage] = useState(null);
   const { currentUser } = useContext(userContext);
-  console.log('currentUSer PROFILEFORM', currentUser);
   const initialState = {
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
-    email: currentUser.email
-  }
+    email: currentUser.email,
+  };
   const [formData, setFormData] = useState(initialState);
 
-  /** Send {formData: username} to parent
-   *    & clear form. */
-  function handleSubmit(evt) {
+  /** Send {formData: username} to parent */
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    editProfile(currentUser.username, formData);
-    // navigate("/");
+
+    try {
+      await editProfile(currentUser.username, formData);
+    } catch (err) {
+      setFlashMessage(err);
+    }
+    
   }
 
   /** Update local state w/curr state of input*/
@@ -85,7 +88,13 @@ function ProfileForm({ editProfile }) {
           ></input>
         </div>
 
-        {/* TODO: Add conditional to display error message */}
+        {flashMessage && (
+          <div>
+            {flashMessage.map((message, index) => (
+              <p key={index}>{message}</p>
+            ))}
+          </div>
+        )}
 
         <button onClick={handleSubmit}>Submit</button>
       </form>

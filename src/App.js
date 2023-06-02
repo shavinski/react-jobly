@@ -42,6 +42,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
     async function getUser() {
@@ -73,17 +74,23 @@ function App() {
   }
 
   async function editProfile(username, formData) {
-    try {
-      const res = await JoblyApi.editProfile(username, formData);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-      return (
-        <div>
-          {err.map((message, index) => <p key={index}>{message}</p>)}
-        </div>
-      )
-    }
+    const res = await JoblyApi.editProfile(username, formData);
+    setCurrentUser(res)
+    const { name, value } = res;
+    setCurrentUser((currData) => ({
+      ...currData,
+      [name]: value,
+    }));
+    // try {
+    //   console.log(res);
+    // } catch (err) {
+    //   console.log(err);
+    //   return (
+    //     <div>
+    //       {err.map((message, index) => <p key={index}>{message}</p>)}
+    //     </div>
+    //   )
+    // }
   }
 
   function logout() {

@@ -6,6 +6,7 @@ import JoblyApi from "./joblyApi";
 import userContext from "./userContext";
 
 
+
 /** Loads starting homepage
  *
  * * Props: 
@@ -20,10 +21,9 @@ function Homepage() {
   return (
     <div>
         <div>
-          <h1>TIME TO GET A JOB</h1>
+          <h1>Find a job that works for you!</h1>
           <p>
-            All the jobs, every one of them, in one convenient place. You're
-            welcome.
+            All the jobs, every one of them, in one convenient place.
           </p>
         </div>
         {currentUser 
