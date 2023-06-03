@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import "./Nav.css"
 import { useContext } from "react";
 import userContext from "./userContext"
@@ -12,51 +12,60 @@ import userContext from "./userContext"
  * 
 */
 function Nav({ logout }) {
-
   const { currentUser } = useContext(userContext);
 
-  return (
-
-    <nav className="d-flex">
-      {currentUser &&
-        <div>
-          <NavLink to="/" end>
-            Jobly
+  function loggedInNav() {
+    return (
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/companies">
+            Companies
           </NavLink>
-          <NavLink to="/companies" end>
-            CompanyList
+        </li>
+        <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/jobs">
+            Jobs
           </NavLink>
-          <NavLink to="/jobs" end>
-            JobList
-          </NavLink>
-          <NavLink to="/profile" end>
+        </li>
+        <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/profile">
             Profile
           </NavLink>
-          <NavLink to="/" onClick={logout} end>
-            Log out {currentUser.username}
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/" onClick={logout}>
+            Log out {currentUser.first_name || currentUser.username}
+          </Link>
+        </li>
+      </ul>
+    );
+  }
+
+  function loggedOutNav() {
+    return (
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/login">
+            Login
           </NavLink>
-        </div>
-      }
+        </li>
+        <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/signup">
+            Sign Up
+          </NavLink>
+        </li>
+      </ul>
+    );
+  }
 
-      {!currentUser &&
-        <div className="d-flex">
-
-          <div className="mr-auto p-2">
-            <NavLink to="/" end>
-              Jobly
-            </NavLink>
-          </div>
-        
-          <div className="p-2">
-            <NavLink to="/login" end>
-              Login
-            </NavLink>
-            <NavLink to="/signup" end>
-              Signup
-            </NavLink>
-          </div>
-        </div>
-      }
+  return (
+    <nav className="Navigation navbar navbar-expand-md">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          Jobly
+        </Link>
+        {currentUser ? loggedInNav() : loggedOutNav()}
+      </div>
     </nav>
   );
 }

@@ -49,100 +49,77 @@ function SignUpForm({ signup }) {
     }));
   }
 
-  return (
-
+  return (  
     <div className="SignupForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="title mt-5">Sign up</h3>
-        <div className="d-flex-column justify-content-center">
-          <form className="form bg-light">
-            <div className="form-group">
-              <div>
-                <label class="form-label mt-3" htmlFor='username'>Username</label>
-              </div>
-              <div>
+        <h3 className="SignupForm-title mt-5">Sign Up</h3>
+        <div className="card">
+          <div className="card-body">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label className="form-label">Username</label>
                 <input
-                  class="form-control-sm"
-                  id='username'
-                  name='username'
+                  name="username"
+                  className="form-control"
                   value={formData.username}
                   onChange={handleChange}
-                ></input>
+                />
               </div>
-            </div>
-
-            <div className="form-group">
-              <div>
-                <label class="form-label mt-3" htmlFor='password'>Password</label>
-              </div>
-              <div>
+              <div className="mb-3">
+                <label className="form-label">Password</label>
                 <input
-                  class="form-control-sm"
-                  id='password'
-                  type='password'
-                  name='password'
+                  type="password"
+                  name="password"
+                  className="form-control"
                   value={formData.password}
                   onChange={handleChange}
-                ></input>
+                />
               </div>
-            </div>
 
-            <div className="form-group">
-              <div>
-                <label class="form-label mt-3" htmlFor='firstName'>First Name</label>
-              </div>
-              <div>
+              <div className="mb-3">
+                <label className="form-label">First name</label>
                 <input
-                  class="form-control-sm"
-                  id='firstName'
-                  name='firstName'
+                  name="firstName"
+                  className="form-control"
                   value={formData.firstName}
                   onChange={handleChange}
-                ></input>
+                />
               </div>
-            </div>
-
-            <div className="form-group">
-              <div>
-                <label class="form-label mt-3" htmlFor='lastName'>Last Name</label>
-              </div>
-              <div>
+              <div className="mb-3">
+                <label className="form-label">Last name</label>
                 <input
-                  class="form-control-sm"
-                  id='lastName'
-                  type='lastName'
-                  name='lastName'
+                  name="lastName"
+                  className="form-control"
                   value={formData.lastName}
                   onChange={handleChange}
-                ></input>
+                />
               </div>
-            </div>
-
-            <div className="form-group">
-              <div>
-                <label class="form-label mt-3" htmlFor='email'>Email</label>
-              </div>
-              <div>
+              <div className="mb-3">
+                <label className="form-label">Email</label>
                 <input
-                  class="form-control-sm"
-                  id='email'
-                  name='email'
+                  type="email"
+                  name="email"
+                  className="form-control"
                   value={formData.email}
                   onChange={handleChange}
-                ></input>
+                />
               </div>
-            </div>
 
-            {flashMessage && (
-              <div>
-                {flashMessage.map((message, index) => (
-                  <p key={index}>{message}</p>
-                ))}
+              {flashMessage && (
+                <div>
+                  {flashMessage.map((message, index) => (
+                    <p key={index}>{message}</p>
+                  ))}
+                </div>
+              )}
+
+              <div className="d-grid">
+                <button className="btn btn-primary" onClick={handleSubmit}>
+                  Submit
+                </button>
               </div>
-            )}
-
-            <button className="btn btn-primary m-3" onClick={handleSubmit}>Submit</button>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

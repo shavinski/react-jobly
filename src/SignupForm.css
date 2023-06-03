@@ -1,4 +1,4 @@
-.title {
+.SignupForm-title {
     color: white;
     text-shadow: -1.2px -1.2px 0 black,
         1.2px -1.2px 0 black,
@@ -6,7 +6,3 @@
         1.2px 1.2px 0 black;
 }
 
-.form {
-    border: 1px solid;
-    border-radius: 10px;
-}

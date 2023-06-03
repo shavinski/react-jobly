@@ -3,6 +3,7 @@ import JoblyAPI from "./joblyApi";
 import JobCard from "./JobCard";
 import './CompanyList.css'
 import { useParams } from "react-router-dom";
+import './CompanyDetail.css'
 
 /** Renders information on single company with all jobs listed by company
  * 
@@ -33,7 +34,7 @@ function CompanyDetail() {
      }
 
     return (
-        <div className="companyContainer">
+        <div className="CompanyDetail col-md-12 offset-md-2">
             <h2>{companyDetail.name}</h2>
             <h4>{companyDetail.description}</h4>
             {companyDetail.jobs.map((j) => {

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import userContext from "./userContext";
+import Alert from "./Alert";
+import './ProfileForm.css'
 
 /** Renders signup or profile form
  *
@@ -13,7 +15,8 @@ import userContext from "./userContext";
 function ProfileForm({ editProfile }) {
   const { currentUser } = useContext(userContext);
 
-  const [flashMessage, setFlashMessage] = useState(null);
+  const [saveConfirmed, setSaveConfirmed] = useState(false);
+  const [flashMessage, setFlashMessage] = useState([]);
   const initialState = {
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
@@ -33,6 +36,7 @@ function ProfileForm({ editProfile }) {
     }
 
     setFlashMessage([]);
+    setSaveConfirmed(true);
   }
 
   /** Update local state w/curr state of input*/
@@ -45,60 +49,66 @@ function ProfileForm({ editProfile }) {
   }
 
   return (
-    <div>
-      <h3>Edit Profile</h3>
-      <form>
-        <div>
-          <label htmlFor='username'>Username</label>
-          <input
-            disabled
-            id='username'
-            name='username'
-            value={currentUser.username}
-          ></input>
+    <div className="ProfileForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+      <h3 className="ProfileForm-title mt-5">Profile</h3>
+      <div className="card">
+        <div className="card-body">
+          <form>
+            <div className="mb-3">
+              <label className="form-label">Username</label>
+              <input
+                disabled
+                className="form-control"
+                placeholder={currentUser.username}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">First Name</label>
+              <input
+                name="firstName"
+                className="form-control"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Last Name</label>
+              <input
+                name="lastName"
+                className="form-control"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email</label>
+              <input
+                name="email"
+                className="form-control"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+
+            {flashMessage.length
+              ? <Alert type="danger" messages={flashMessage} />
+              : null}
+
+            {saveConfirmed
+              ?
+              <Alert type="success" messages={["Updated successfully."]} />
+              : null}
+
+
+            <div className="d-grid">
+              <button className="btn btn-primary" onClick={handleSubmit}>
+                Save Changes
+              </button>
+            </div>
+
+          </form>
         </div>
-
-        <div>
-          <label htmlFor='firstName'>First Name</label>
-          <input
-            id='firstName'
-            name='firstName'
-            value={formData.firstName}
-            onChange={handleChange}
-          ></input>
-        </div>
-
-        <div>
-          <label htmlFor='lastName'>Last Name</label>
-          <input
-            id='lastName'
-            type='lastName'
-            name='lastName'
-            value={formData.lastName}
-            onChange={handleChange}
-          ></input>
-        </div>
-
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            id='email'
-            name='email'
-            value={formData.email}
-            onChange={handleChange}
-          ></input>
-        </div>
-
-        {flashMessage && (
-          <div>
-            {flashMessage.map((message, index) => (
-              <p key={index}>{message}</p>
-            ))}
-          </div>
-        )}
-
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
+      </div>
     </div>
   );
 }

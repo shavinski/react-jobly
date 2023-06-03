@@ -16,7 +16,6 @@ function LoginForm({ login }) {
     const [formData, setFormData] = useState(initialState);
     const [flashMessage, setFlashMessage] = useState(null);
 
-
     /** Send {formData: username} to parent
      *    & clear form. */
     async function handleSubmit(evt) {
@@ -26,6 +25,7 @@ function LoginForm({ login }) {
             await login(formData);
             navigate("/");
         } catch (err) {
+            console.log('ERROR', err);
             setFlashMessage(err);
             return;
         }
@@ -44,44 +44,56 @@ function LoginForm({ login }) {
     }
 
     return (
-        <div className="d-flex-column justify-content-center m-5">
+        <div className="LoginForm">
+            <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                <h3 className="LoginForm-title mt-5">Log In</h3>
+                <div className="card">
+                    <div className="card-body">
+                        <form onSubmit={handleSubmit}>
+    
+                            <div className="mb-3">
+                                <label className="form-label">Username</label>
+                                <input
+                                    name="username"
+                                    className="form-control"
+                                    value={formData.username}
+                                    onChange={handleChange}
+                                    autoComplete="username"
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label">Password</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="form-control"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    autoComplete="current-password"
+                                    required
+                                />
+                            </div>
 
-            <div>
-                <h3 className="LoginForm-login">Log in</h3>
-            </div>
+                            {flashMessage && (
+                                <div>
+                                    {flashMessage.map((message, index) => (
+                                        <p key={index}>{message}</p>
+                                    ))}
+                                </div>
+                            )}
 
-            <form>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        id="username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}></input>
-                </div>
+                            <div className="d-grid">
+                                <button className="btn btn-primary" onClick={handleSubmit}>
+                                    Submit
+                                </button>
+                            </div>
 
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}></input>
-                    <small id="emailHelp" class="form-text text-muted">Never share your password!</small>
-                </div>
-
-                {flashMessage && (
-                    <div>
-                        {flashMessage.map((message, index) => (
-                            <p key={index}>{message}</p>
-                        ))}
+                        </form>
                     </div>
-                )}
-
-                <button className="btn btn-primary m-2" onClick={handleSubmit}>Submit</button>
-            </form>
-        </div >
+                </div>
+            </div>
+        </div>
     )
 }
 

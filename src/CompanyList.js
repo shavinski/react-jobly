@@ -37,15 +37,21 @@ function CompanyList() {
   }
 
   return (
-    <div className='companyContainer'>
+    <div className='CompanyList col-md-8 offset-md-2'>
       <SearchBar handleSearch={handleSearch} />
-      {companyList.map((c) => {
-        return (
-          <Link className='CompanyLink' key={c.handle} to={`${c.handle}`}>
-            <CompanyCard key={c.handle} comp={c} />
-          </Link>
-        );
-      })}
+      {companyList.length
+        ? (
+          <div className="CompanyList-list">
+            {companyList.map(c => (
+              <CompanyCard
+                key={c.handle}
+                comp={c}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="lead">Sorry, no results were found!</p>
+        )}
     </div>
   );
 }

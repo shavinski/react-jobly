@@ -1,19 +1,18 @@
 .CompanyCard {
-    border: solid black;
-    margin: 1em;
-    width: 70%;
-}
-
-.CompanyLink {
-    display: flex;
-    width: 80%;
-    text-decoration: none;
+    max-height: 250px;
+    margin-bottom: 1rem;
     color: inherit;
-    justify-content: center;
-    align-items: center;
-}
-
-img{
-    max-height: 80px;
-    max-width: 80px;
-}
+    text-decoration: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  
+  .CompanyCard img {
+    width: 50px;
+  }
+  
+  .CompanyCard:hover { /* <Card /> that is also <Link /> */
+    text-decoration: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }

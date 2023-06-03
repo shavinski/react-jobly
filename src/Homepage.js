@@ -31,7 +31,7 @@ function Homepage() {
           </div>
         {currentUser 
           ? 
-          <h2>Welcome back, {currentUser.firstName}</h2>
+          <h2 className="Homepage-desc" >Welcome back, {currentUser.firstName}</h2>
           :
           <div>
             <Link to='/login'><button className="btn btn-primary m-1">Login</button></Link>
