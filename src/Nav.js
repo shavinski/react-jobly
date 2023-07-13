@@ -34,7 +34,7 @@ function Nav({ logout }) {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/" onClick={logout}>
-            Log out {currentUser.first_name || currentUser.username}
+            Log Out {currentUser.first_name || currentUser.username}
           </Link>
         </li>
       </ul>
@@ -46,7 +46,7 @@ function Nav({ logout }) {
       <ul className="navbar-nav ms-auto">
         <li className="nav-item me-4">
           <NavLink className="nav-link" to="/login">
-            Login
+            Log In
           </NavLink>
         </li>
         <li className="nav-item me-4">
@@ -61,8 +61,9 @@ function Nav({ logout }) {
   return (
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Jobly
+        <Link className="navbar-brand d-flex d-inline-block justify-content-center align-items-end" to="/">
+          <img className='img-fluid' width='50' height='50' src="https://images.emojiterra.com/google/android-12l/512px/1f4bc.png" alt="Logo"></img>
+          <h1 className="m-0">Jobly</h1>
         </Link>
         {currentUser ? loggedInNav() : loggedOutNav()}
       </div>

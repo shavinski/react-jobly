@@ -38,7 +38,7 @@ function CompanyList() {
 
   return (
     <div className='CompanyList col-md-8 offset-md-2'>
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar handleSearch={handleSearch} className/>
       {companyList.length
         ? (
           <div className="CompanyList-list">

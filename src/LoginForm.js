@@ -14,7 +14,7 @@ function LoginForm({ login }) {
 
     const initialState = { username: '', password: '' };
     const [formData, setFormData] = useState(initialState);
-    const [flashMessage, setFlashMessage] = useState(null);
+    const [flashMessage, setFlashMessage] = useState([]);
 
     /** Send {formData: username} to parent
      *    & clear form. */

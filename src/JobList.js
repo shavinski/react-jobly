@@ -46,7 +46,7 @@ function JobList() {
     return <Navigate to="/" />; }
   
   return (
-    <div className='jobContainer'>
+    <div className='JobList col-md-8 offset-md-2'>
       
       <SearchBar handleSearch={handleSearch} />
       {jobList.map((j) => {

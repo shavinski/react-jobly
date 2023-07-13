@@ -32,9 +32,9 @@ function SearchBar({handleSearch}) {
   return (
     <form className='m-3' onSubmit={handleSubmit}>
 
-      <div className="d-flex ">
+      <div className="d-flex justify-content-center">
         <input
-          className=""
+          className="col-md-4"
           placeholder="Enter Search Term..."
           id="searchTerm"
           name="searchTerm"

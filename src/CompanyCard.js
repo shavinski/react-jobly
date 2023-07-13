@@ -15,7 +15,7 @@ function CompanyCard({ comp }) {
     return (
         <Link className="CompanyCard card" to={`/companies/${comp.handle}`}>
             <div className="card-body">
-                <h6 className="card-title">
+                <h6 className="card-title d-flex justify-content-between">
                     {comp.name}
                     {comp.logoUrl && <img src={comp.logoUrl}
                         alt={comp.name}
