@@ -59,7 +59,7 @@ function Nav({ logout }) {
   }
 
   return (
-    <nav className="Navigation navbar navbar-expand-md">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <Link className="navbar-brand d-flex d-inline-block justify-content-center align-items-end" to="/">
           <img className='img-fluid' width='50' height='50' src="https://images.emojiterra.com/google/android-12l/512px/1f4bc.png" alt="Logo"></img>
