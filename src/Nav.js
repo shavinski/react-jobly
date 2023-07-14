@@ -34,7 +34,7 @@ function Nav({ logout }) {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/" onClick={logout}>
-            Log out {currentUser.first_name || currentUser.username}
+            <button className="btn btn-secondary btn-sm">Log out {currentUser.first_name || currentUser.username}</button>
           </Link>
         </li>
       </ul>
