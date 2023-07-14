@@ -33,10 +33,8 @@ function CompanyDetail() {
         return <h1>Loading...</h1>
      }
 
-     console.log('companyDetail', companyDetail);
     return (
         <div className="CompanyDetail col-md-8 offset-md-2">
-            {/* <h2 className="m-4">{companyDetail.name}</h2> */}
             <h3 className="m-4">Our culture at {companyDetail.name}</h3>
             <h5 className="mb-5">{companyDetail.description}</h5>
             {companyDetail.jobs.map((j) => {

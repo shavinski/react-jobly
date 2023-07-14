@@ -4,7 +4,7 @@ import JobCard from "./JobCard";
 import SearchBar from "./SearchBar";
 import "./JobList.css";
 import userContext from './userContext'
-import {Navigate} from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 /**JobList component:
  *
@@ -20,10 +20,9 @@ import {Navigate} from 'react-router-dom'
 
 function JobList() {
   const [jobList, setJobList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(userContext);
 
-  
   useEffect(() => {
     async function getJobs() {
       const response = await JoblyAPI.getJobs();
@@ -37,17 +36,18 @@ function JobList() {
     const response = await JoblyAPI.getJobs(results);
     setJobList(response);
   }
-  
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
-  
+
   if (!currentUser) {
-    return <Navigate to="/" />; }
-  
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className='JobList col-md-8 offset-md-2'>
-      
+
       <SearchBar handleSearch={handleSearch} />
       {jobList.map((j) => {
         return <JobCard job={j} key={j.id} />;

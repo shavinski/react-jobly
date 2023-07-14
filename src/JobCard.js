@@ -10,7 +10,6 @@ import './JobCard.css'
  */
 
 function JobCard({ job }) {
-    console.log(job);
     return (
         <div className="JobCard card p-3 d-flex align-items-center">
 
