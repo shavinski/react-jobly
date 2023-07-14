@@ -61,7 +61,7 @@ function Nav({ logout }) {
   return (
     <header>
       <nav className="navbar navbar-expand-md bg-dark d-flex align-items-center" data-bs-theme="dark">
-        <Link className="navbar-brand d-flex justify-content-center align-items-center m-2" to="/">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
           <p className="logo">J</p>
           <p className="logo-name">Jobly</p>
         </Link>
