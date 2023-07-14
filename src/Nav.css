@@ -1,9 +1,18 @@
 nav {
-  background-color: slateblue;
   text-align: center;
   font-weight: bold;
 }
 
-.navbar-brand {
-  gap: 10px;
+.logo {
+  color: white;
+  font-size: 1.8em;
+  background-color: #7b8ab8;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logo-name {
+  font-size: 1.5em;
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import RoutesList from "./RoutesList";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
+import "bootswatch/dist/morph/bootstrap.min.css";
 import jwt_Decode from "jwt-decode";
 import Nav from "./Nav";
 import JoblyApi from "./joblyApi";

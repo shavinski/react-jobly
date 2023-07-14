@@ -114,7 +114,7 @@ function SignUpForm({ signup }) {
               )}
 
               <div className="d-grid">
-                <button className="btn btn-primary" onClick={handleSubmit}>
+                <button className="btn btn-dark" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>

@@ -101,7 +101,7 @@ function ProfileForm({ editProfile }) {
 
 
             <div className="d-grid">
-              <button className="btn btn-primary" onClick={handleSubmit}>
+              <button className="btn btn-dark" onClick={handleSubmit}>
                 Save Changes
               </button>
             </div>

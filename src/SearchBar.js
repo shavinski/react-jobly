@@ -34,14 +34,14 @@ function SearchBar({handleSearch}) {
 
       <div className="d-flex justify-content-center">
         <input
-          className="col-md-4"
+          className="form-control m-1"
           placeholder="Enter Search Term..."
           id="searchTerm"
           name="searchTerm"
           value={searchTerm}
           onChange={handleChange}
         />
-        <button className="btn btn-primary btn-sm">Search</button>
+        <button className="btn btn-dark btn-md">Search</button>
       </div>
     </form>
   );
