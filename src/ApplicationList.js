@@ -3,8 +3,7 @@ import React from "react";
 function ApplicationList() {
     return (
         <div>
-            <h1>Application List</h1>
-            <p>NOW THIS SHOULD WORK</p>
+            <h1>Your sent applications!</h1>
         </div>
     )
 }

@@ -32,7 +32,7 @@ function JobCard({ job }) {
                 </div>
             )}
 
-            <button className="btn btn-sm btn-dark fw-bold mt-3">Apply</button>
+            <button id={job.id} className="btn btn-sm btn-dark fw-bold mt-3">Apply</button>
         </div>
     )
 }

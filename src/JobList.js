@@ -20,7 +20,7 @@ import { Navigate } from 'react-router-dom'
 
 function JobList() {
   const [jobList, setJobList] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(userContext);
 
   useEffect(() => {
@@ -37,6 +37,24 @@ const [isLoading, setIsLoading] = useState(true);
     setJobList(response);
   }
 
+  async function applyToJob(event) {
+    const username = currentUser.username
+    const data = {
+      "username": username,
+      "jobId": undefined
+    }
+
+    if(event.target.tagName === "BUTTON") {
+      data.jobId = event.target.id
+      console.log(event.target.id);
+    }
+
+    if(data.jobId) {
+      const response = await JoblyAPI.applyToJob(data)
+      console.log(response);
+    }
+  }
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -46,7 +64,7 @@ const [isLoading, setIsLoading] = useState(true);
   }
 
   return (
-    <div className='JobList col-md-8 offset-md-2'>
+    <div className='JobList col-md-8 offset-md-2' onClick={applyToJob}>
 
       <SearchBar handleSearch={handleSearch} />
       {jobList.map((j) => {

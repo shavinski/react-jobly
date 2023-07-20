@@ -102,9 +102,9 @@ class JoblyApi {
    *          {
               "username", 
               "password", 
-	            "firstName", 
-		          "lastName", 
-	            "email", 
+              "firstName", 
+              "lastName", 
+              "email", 
    *              }
    *
    * Returns: 
@@ -124,11 +124,11 @@ class JoblyApi {
    * returns => user object =>
    *              {
    *              "username": "testUsername",
-		              "firstName": "test-fn",
-		              "lastName": "test-ln",
-		              "email": "test@gmail.com",
-		              "isAdmin": false,
-		              "applications": []
+                  "firstName": "test-fn",
+                  "lastName": "test-ln",
+                  "email": "test@gmail.com",
+                  "isAdmin": false,
+                  "applications": []
    *               }
    */
 
@@ -153,6 +153,21 @@ class JoblyApi {
   static async editProfile(username, formData) {
     let res = await this.request(`users/${username}`, formData, 'patch');
     return res.user;
+  }
+
+  /** User apply to job
+  * 
+  * Input: username and jobId
+  * 
+  * returns =>
+ *              {
+ *               "applied": 25
+ *              }
+  */
+  static async applyToJob(data) {
+    let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "post")
+    console.log('JOB APPLIED', res);
+    return res.applied;
   }
 }
 
