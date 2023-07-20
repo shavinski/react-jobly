@@ -7,6 +7,7 @@ import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
+import ApplicationList from "./ApplicationList";
 import userContext from "./userContext";
 
 /** Makes routes for application
@@ -33,6 +34,7 @@ function RoutesList({ login, signup, editProfile }) {
           <Route path='/profile' element={<ProfileForm editProfile={editProfile} />} />
           <Route path='/companies' element={<CompanyList />} />
           <Route path='/jobs' element={<JobList />} />
+          <Route path="/applications" element={<ApplicationList />} />
           <Route path='/companies/:handle' element={<CompanyDetail />} />
         </>
       )}

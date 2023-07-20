@@ -28,6 +28,11 @@ function Nav({ logout }) {
           </NavLink>
         </li>
         <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/applications">
+            Applications
+          </NavLink>
+        </li>
+        <li className="nav-item me-4">
           <NavLink className="nav-link" to="/profile">
             Profile
           </NavLink>
@@ -37,6 +42,7 @@ function Nav({ logout }) {
             <button className="btn btn-secondary btn-sm">Log out {currentUser.first_name || currentUser.username}</button>
           </Link>
         </li>
+
       </ul>
     );
   }
