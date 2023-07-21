@@ -35,6 +35,7 @@ function ProfileForm({ editProfile }) {
       return;
     }
 
+    console.log('currentUser =>', currentUser);
     setFlashMessage([]);
     setSaveConfirmed(true);
   }

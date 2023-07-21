@@ -37,24 +37,6 @@ function JobList({ applyToJob }) {
     setJobList(response);
   }
 
-  // async function applyToJob(event) {
-  //   const username = currentUser.username
-  //   const data = {
-  //     "username": username,
-  //     "jobId": undefined
-  //   }
-
-  //   if(event.target.tagName === "BUTTON") {
-  //     data.jobId = event.target.id
-  //     console.log(event.target.id);
-  //   }
-
-  //   if(data.jobId) {
-  //     const response = await JoblyAPI.applyToJob(data)
-  //     console.log(response);
-  //   }
-  // }
-
   if (isLoading) {
     return <h1>Loading...</h1>;
   }

@@ -1,26 +1,47 @@
 import React, { useContext, useEffect, useState } from "react";
 import userContext from './userContext'
 import JoblyApi from "./joblyApi";
+import JobCard from "./JobCard";
 
 
 function ApplicationList() {
     const { currentUser } = useContext(userContext);
+    const [applied, setApplied] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    // const [userApplications, setUserApplications] = useState([]);
 
-    // useEffect(() => {
-    //     async function getSingleJob() {
-    //         const response = await JoblyApi.getSingleJob(currentUser.applications[0]);
-    //         setUserApplications((prev) => [...prev, response])
-    //     }
-    //     getSingleJob();
-    // }, [])
+    useEffect(() => {
+        async function getJobs() {
+            const response = await JoblyApi.getJobs();
+            let appliedJobs = response.filter(job => currentUser.applications.includes(job.id));
+            setApplied(appliedJobs)
+            setIsLoading(false);
+        }
+        getJobs();
+    }, [])
+
+
+    if (isLoading) {
+        return <h1>Loading...</h1>;
+    }
 
     return (
         <div>
-            <h1>Your sent applications!</h1>
 
-            <p>{currentUser.applications}</p>
+            {applied.length
+                ? (
+                    <div className="col-md-8 offset-md-2">
+                        <h1 className="mt-3">All your applications!</h1>
+                        {applied.map((job) => {
+                            return <JobCard job={job} key={job.id} />
+                        })}
+                    </div>
+
+                ) : (
+                    <h1>No applications sent so far!</h1>
+                )
+            }
+
+
         </div>
     )
 }
