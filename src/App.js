@@ -42,6 +42,7 @@ const LOCAL_STORAGE_TOKEN_KEY = "token";
 function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
+  const [applications, setApplications] = useState([])
   const [isLoading, setIsLoading] = useState(true);
 
 
@@ -64,6 +65,8 @@ function App() {
     getUser();
   }, [token]);
 
+  console.log(currentUser);
+
   async function login(formData) {
     const token = await JoblyApi.login(formData);
     setToken(token);
@@ -76,8 +79,26 @@ function App() {
 
   async function editProfile(username, formData) {
     const newData = await JoblyApi.editProfile(username, formData);
-
     setCurrentUser(newData);
+  }
+
+  async function applyToJob(event) {
+    const username = currentUser.username
+    const data = {
+      "username": username,
+      "jobId": undefined
+    }
+
+    if (event.target.tagName === "BUTTON") {
+      data.jobId = event.target.id
+    }
+
+    if (data.jobId) {
+      const response = await JoblyApi.applyToJob(data)
+      const jobId = response.applied;
+      console.log(jobId);
+      setCurrentUser((currData) => ({ ...currData, applications: [...currentUser.applications, jobId] }))
+    }
   }
 
   function logout() {
@@ -98,7 +119,11 @@ function App() {
       <userContext.Provider value={{ currentUser }}>
         <BrowserRouter>
           <Nav logout={logout} />
-          <RoutesList login={login} signup={signup} editProfile={editProfile} />
+          <RoutesList
+            login={login}
+            signup={signup}
+            editProfile={editProfile}
+            applyToJob={applyToJob} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

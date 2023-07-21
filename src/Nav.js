@@ -73,21 +73,21 @@ function Nav({ logout }) {
         </Link>
 
         <button
-          class="navbar-toggler m-2"
+          className="navbar-toggler m-2"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#toggleMobileMenu"
           aria-controls="toggleMobileMenu"
           aria-expanded="false"
           aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="toggleMobileMenu">
           {currentUser ? loggedInNav() : loggedOutNav()}
         </div>
-      </nav>
-    </header>
+      </nav >
+    </header >
   );
 }
 

@@ -84,6 +84,46 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** User apply to job
+  * 
+  * Input: username and jobId
+  * 
+  * returns =>
+  *              {
+  *               "applied": 25
+  *              }
+  */
+  static async applyToJob(data) {
+    let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "post")
+    return res;
+  }
+
+  /** Get single job detail
+   * 
+   * Input: job id
+   * 
+   * returns =>
+   *              {
+   *                "job": {
+   *                   "id": 1,
+   *                   "title": "Conservator, furniture",
+   *                   "salary": 110000,
+   *                   "equity": "0",
+   *                   "company": {
+   *                     "handle": "watson-davis",
+   *                     "name": "Watson-Davis",
+   *                     "description": "Year join loss.",
+   *                     "numEmployees": 819,
+   *                     "logoUrl": "/logos/logo3.png"
+   *                   }
+   *                 }
+   *               }
+   */
+  static async getSingleJob(id) {
+    let res = await this.request(`jobs/${id}`)
+    return res;
+  }
+
   /** Login user and get token
    *
    * Input: data => {username: 'testUser', password:'password'}
@@ -155,20 +195,6 @@ class JoblyApi {
     return res.user;
   }
 
-  /** User apply to job
-  * 
-  * Input: username and jobId
-  * 
-  * returns =>
- *              {
- *               "applied": 25
- *              }
-  */
-  static async applyToJob(data) {
-    let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "post")
-    console.log('JOB APPLIED', res);
-    return res.applied;
-  }
 }
 
 export default JoblyApi;

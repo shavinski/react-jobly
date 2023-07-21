@@ -16,7 +16,7 @@ import './CompanyDetail.css'
  *  CompanyList -> CompanyDetail -> JobCard
  */
 
-function CompanyDetail() {
+function CompanyDetail({ applyToJob }) {
     const [companyDetail, setCompanyDetail] = useState(null);
     const { handle } = useParams();
 
@@ -34,7 +34,7 @@ function CompanyDetail() {
      }
 
     return (
-        <div className="CompanyDetail col-md-8 offset-md-2">
+        <div className="CompanyDetail col-md-8 offset-md-2" onClick={applyToJob}>
             <h3 className="m-4">Our culture at {companyDetail.name}</h3>
             <h5 className="mb-5">{companyDetail.description}</h5>
             {companyDetail.jobs.map((j) => {
