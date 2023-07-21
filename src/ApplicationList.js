@@ -37,7 +37,7 @@ function ApplicationList() {
                     </div>
 
                 ) : (
-                    <h1>No applications sent so far!</h1>
+                    <h1 className="mt-3">No applications sent so far!</h1>
                 )
             }
 
