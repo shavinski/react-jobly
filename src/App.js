@@ -42,7 +42,6 @@ const LOCAL_STORAGE_TOKEN_KEY = "token";
 function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
-  const [applications, setApplications] = useState([])
   const [isLoading, setIsLoading] = useState(true);
 
 
