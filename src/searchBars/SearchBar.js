@@ -11,7 +11,7 @@ import React, { useState } from "react";
  * {CompanyList, JobList} -> SearchBar
  */
 
-function SearchBar({handleSearch}) {
+function SearchBar({ handleSearch }) {
 
   const [searchTerm, setSearchTerm] = useState('');
 

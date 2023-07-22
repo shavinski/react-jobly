@@ -4,6 +4,14 @@ import JoblyApi from "../joblyApi";
 import JobCard from "../jobs/JobCard";
 
 
+/** Renders a page with all current sent applications 
+ * 
+ * props: {handleApplyButton} 
+ * - Function that handles applying and unapplying from job
+ * 
+ * App -> ApplicationList
+ */
+
 function ApplicationList({ handleApplyButton }) {
     const { currentUser } = useContext(userContext);
     const [applied, setApplied] = useState([]);

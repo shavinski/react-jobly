@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import JobList from "./jobs/JobList";
 import CompanyList from "./companies/CompanyList";
 import CompanyDetail from "./companies/CompanyDetail";
-import Homepage from "./Homepage";
+import Homepage from "./homepages/Homepage";
 import LoginForm from "./forms/LoginForm";
 import SignupForm from "./forms/SignupForm";
 import ProfileForm from "./forms/ProfileForm";

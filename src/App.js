@@ -5,13 +5,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "bootswatch/dist/morph/bootstrap.min.css";
 import jwt_Decode from "jwt-decode";
-import Nav from "./Nav";
+import Nav from "./navbars/Nav";
 import JoblyApi from "./joblyApi";
 import userContext from "./userContext";
 
 /** Loads initial app
  * 
- * * Props: 
+ * Props: 
  * - none
  * 
  * State:
@@ -22,14 +22,14 @@ import userContext from "./userContext";
  *    - default null 
  *    - defined if token successfully received 
  *    - Data example:
-*              {
-*              "username": "testUsername",
-                  "firstName": "test-fn",
-                  "lastName": "test-ln",
-                  "email": "test@gmail.com",
-                  "isAdmin": false,
-                  "applications": []
-*               }
+ *              {
+ *                  "username": "testUsername",
+ *                  "firstName": "test-fn",
+ *                  "lastName": "test-ln",
+ *                  "email": "test@gmail.com",
+ *                  "isAdmin": false,
+ *                  "applications": []
+ *               }
  * 
  * Context: 
  * - userContext contains currentUser data
@@ -44,6 +44,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log('\n currentUser => ',currentUser);
 
   useEffect(() => {
     async function getUser() {

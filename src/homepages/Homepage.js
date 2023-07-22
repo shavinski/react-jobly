@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import JoblyApi from "./joblyApi";
-import userContext from "./userContext";
+import JoblyApi from "../joblyApi";
+import userContext from "../userContext";
 import "./Homepage.css"
 
 

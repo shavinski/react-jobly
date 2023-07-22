@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JoblyAPI from "../joblyApi";
 import CompanyCard from "./CompanyCard";
-import SearchBar from "../SearchBar";
+import SearchBar from "../searchBars/SearchBar";
 import "./CompanyList.css";
 
 /** Loads company details
@@ -37,7 +37,7 @@ function CompanyList() {
 
   return (
     <div className='CompanyList col-md-8 offset-md-2'>
-      <SearchBar handleSearch={handleSearch} className/>
+      <SearchBar handleSearch={handleSearch} className />
       {companyList.length
         ? (
           <div className="CompanyList-list">

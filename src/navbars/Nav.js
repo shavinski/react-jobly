@@ -1,7 +1,7 @@
 import { NavLink, Link } from "react-router-dom"
 import "./Nav.css"
 import { useContext } from "react";
-import userContext from "./userContext"
+import userContext from "../userContext"
 
 /** Renders nav bar with navlinks 
  * 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import JoblyAPI from "../joblyApi";
 import JobCard from "./JobCard";
-import SearchBar from "../SearchBar";
+import SearchBar from "../searchBars/SearchBar";
 import "./JobList.css";
 import userContext from '../userContext'
 import { Navigate } from 'react-router-dom'
@@ -9,7 +9,8 @@ import { Navigate } from 'react-router-dom'
 /**JobList component:
  *
  * Props:
- * - none
+ * - handleApplyButton
+ *    Function that handles applying and unapplying from job
  *
  * State:
  * - jobList array: list of props to pass into JobCard to create components
