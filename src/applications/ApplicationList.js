@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import userContext from './userContext'
-import JoblyApi from "./joblyApi";
-import JobCard from "./JobCard";
+import userContext from '../userContext'
+import JoblyApi from "../joblyApi";
+import JobCard from "../jobs/JobCard";
 
 
-function ApplicationList() {
+function ApplicationList({ handleApplyButton }) {
     const { currentUser } = useContext(userContext);
     const [applied, setApplied] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,7 @@ function ApplicationList() {
 
             {applied.length
                 ? (
-                    <div className="col-md-8 offset-md-2">
+                    <div className="col-md-8 offset-md-2" onClick={handleApplyButton}>
                         <h1 className="mt-3">All your applications!</h1>
                         {applied.map((job) => {
                             return <JobCard job={job} key={job.id} />

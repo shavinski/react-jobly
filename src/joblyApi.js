@@ -98,6 +98,20 @@ class JoblyApi {
     return res;
   }
 
+  /** User unapply to job
+ * 
+ * Input: username and jobId
+ * 
+ * returns =>
+ *              {
+ *               "unapplied": 25
+ *              }
+ */
+  static async unapplyToJob(data) {
+    let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "delete")
+    return res;
+  }
+
   /** Get single job detail
    * 
    * Input: job id

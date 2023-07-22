@@ -64,11 +64,14 @@ function App() {
     getUser();
   }, [token]);
 
-  console.log(currentUser);
-
   async function login(formData) {
     const token = await JoblyApi.login(formData);
     setToken(token);
+  }
+
+  function logout() {
+    JoblyApi.logout();
+    setToken("");
   }
 
   async function signup(formData) {
@@ -95,15 +98,40 @@ function App() {
     if (data.jobId) {
       const response = await JoblyApi.applyToJob(data)
       const jobId = response.applied;
-      console.log(jobId);
       setCurrentUser((currData) => ({ ...currData, applications: [...currentUser.applications, jobId] }))
     }
   }
 
-  function logout() {
-    JoblyApi.logout();
-    setToken("");
+  async function unapplyToJob(event) {
+    const username = currentUser.username
+    const data = {
+      "username": username,
+      "jobId": undefined
+    }
+
+    if (event.target.tagName === "BUTTON") {
+      data.jobId = event.target.id
+    }
+
+    if (data.jobId) {
+      const response = await JoblyApi.unapplyToJob(data)
+      const jobId = response.unapplied;
+      setCurrentUser((currData) => (
+        {
+          ...currData,
+          applications: currData.applications.filter((id) => id !== jobId)
+        }))
+    }
   }
+
+  function handleApplyButton(event) {
+    if (event.target.innerText === 'Apply') {
+      applyToJob(event);
+    } else {
+      unapplyToJob(event);
+    }
+  }
+
 
   if (isLoading) {
     return (
@@ -122,7 +150,9 @@ function App() {
             login={login}
             signup={signup}
             editProfile={editProfile}
-            applyToJob={applyToJob} />
+            handleApplyButton={handleApplyButton}
+            applyToJob={applyToJob}
+            unapplyToJob={unapplyToJob} />
         </BrowserRouter>
       </userContext.Provider>
     </div>
