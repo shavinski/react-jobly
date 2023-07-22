@@ -84,6 +84,60 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** User apply to job
+  * 
+  * Input: username and jobId
+  * 
+  * returns =>
+  *              {
+  *               "applied": 25
+  *              }
+  */
+  static async applyToJob(data) {
+    let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "post")
+    return res;
+  }
+
+  /** User unapply to job
+ * 
+ * Input: username and jobId
+ * 
+ * returns =>
+ *              {
+ *               "unapplied": 25
+ *              }
+ */
+  static async unapplyToJob(data) {
+    let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "delete")
+    return res;
+  }
+
+  /** Get single job detail
+   * 
+   * Input: job id
+   * 
+   * returns =>
+   *              {
+   *                "job": {
+   *                   "id": 1,
+   *                   "title": "Conservator, furniture",
+   *                   "salary": 110000,
+   *                   "equity": "0",
+   *                   "company": {
+   *                     "handle": "watson-davis",
+   *                     "name": "Watson-Davis",
+   *                     "description": "Year join loss.",
+   *                     "numEmployees": 819,
+   *                     "logoUrl": "/logos/logo3.png"
+   *                   }
+   *                 }
+   *               }
+   */
+  static async getSingleJob(id) {
+    let res = await this.request(`jobs/${id}`)
+    return res;
+  }
+
   /** Login user and get token
    *
    * Input: data => {username: 'testUser', password:'password'}
@@ -102,9 +156,9 @@ class JoblyApi {
    *          {
               "username", 
               "password", 
-	            "firstName", 
-		          "lastName", 
-	            "email", 
+              "firstName", 
+              "lastName", 
+              "email", 
    *              }
    *
    * Returns: 
@@ -124,11 +178,11 @@ class JoblyApi {
    * returns => user object =>
    *              {
    *              "username": "testUsername",
-		              "firstName": "test-fn",
-		              "lastName": "test-ln",
-		              "email": "test@gmail.com",
-		              "isAdmin": false,
-		              "applications": []
+                  "firstName": "test-fn",
+                  "lastName": "test-ln",
+                  "email": "test@gmail.com",
+                  "isAdmin": false,
+                  "applications": []
    *               }
    */
 
@@ -154,6 +208,7 @@ class JoblyApi {
     let res = await this.request(`users/${username}`, formData, 'patch');
     return res.user;
   }
+
 }
 
 export default JoblyApi;

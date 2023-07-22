@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import userContext from '../userContext'
 import './JobCard.css'
 
 /** Renders a job card with info
@@ -10,6 +11,29 @@ import './JobCard.css'
  */
 
 function JobCard({ job }) {
+    const { currentUser } = useContext(userContext);
+
+    const unapplyStyle = {
+        backgroundColor: "red",
+        color: "white"
+    }
+
+    function applyButton() {
+        return (
+            <button id={job.id} className="btn btn-sm fw-bold mt-3">
+                Apply
+            </button>
+        )
+    }
+
+    function unapplyButton() {
+        return (
+            <button id={job.id} style={unapplyStyle} className="btn btn-sm fw-bold mt-3">
+                Unapply
+            </button>
+        )
+    }
+
     return (
         <div className="JobCard card p-3 d-flex align-items-center">
 
@@ -32,8 +56,9 @@ function JobCard({ job }) {
                 </div>
             )}
 
-            <button className="btn btn-sm btn-dark fw-bold mt-3">Apply</button>
-        </div>
+            {!currentUser.applications.includes(job.id) ? applyButton() : unapplyButton()}
+
+        </div >
     )
 }
 

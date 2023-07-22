@@ -11,7 +11,7 @@ import React, { useState } from "react";
  * {CompanyList, JobList} -> SearchBar
  */
 
-function SearchBar({handleSearch}) {
+function SearchBar({ handleSearch }) {
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -32,7 +32,7 @@ function SearchBar({handleSearch}) {
   return (
     <form className='m-3' onSubmit={handleSubmit}>
 
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mt-4">
         <input
           className="form-control m-1"
           placeholder="Enter Search Term..."

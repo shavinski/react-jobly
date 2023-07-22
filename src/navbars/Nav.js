@@ -1,7 +1,7 @@
 import { NavLink, Link } from "react-router-dom"
 import "./Nav.css"
 import { useContext } from "react";
-import userContext from "./userContext"
+import userContext from "../userContext"
 
 /** Renders nav bar with navlinks 
  * 
@@ -28,6 +28,11 @@ function Nav({ logout }) {
           </NavLink>
         </li>
         <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/applications">
+            Applications
+          </NavLink>
+        </li>
+        <li className="nav-item me-4">
           <NavLink className="nav-link" to="/profile">
             Profile
           </NavLink>
@@ -37,6 +42,7 @@ function Nav({ logout }) {
             <button className="btn btn-secondary btn-sm">Log out {currentUser.first_name || currentUser.username}</button>
           </Link>
         </li>
+
       </ul>
     );
   }
@@ -67,21 +73,21 @@ function Nav({ logout }) {
         </Link>
 
         <button
-          class="navbar-toggler m-2"
+          className="navbar-toggler m-2"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#toggleMobileMenu"
           aria-controls="toggleMobileMenu"
           aria-expanded="false"
           aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="toggleMobileMenu">
           {currentUser ? loggedInNav() : loggedOutNav()}
         </div>
-      </nav>
-    </header>
+      </nav >
+    </header >
   );
 }
 

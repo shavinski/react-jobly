@@ -5,13 +5,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "bootswatch/dist/morph/bootstrap.min.css";
 import jwt_Decode from "jwt-decode";
-import Nav from "./Nav";
+import Nav from "./navbars/Nav";
 import JoblyApi from "./joblyApi";
 import userContext from "./userContext";
 
 /** Loads initial app
  * 
- * * Props: 
+ * Props: 
  * - none
  * 
  * State:
@@ -22,14 +22,14 @@ import userContext from "./userContext";
  *    - default null 
  *    - defined if token successfully received 
  *    - Data example:
-*              {
-*              "username": "testUsername",
-                  "firstName": "test-fn",
-                  "lastName": "test-ln",
-                  "email": "test@gmail.com",
-                  "isAdmin": false,
-                  "applications": []
-*               }
+ *              {
+ *                  "username": "testUsername",
+ *                  "firstName": "test-fn",
+ *                  "lastName": "test-ln",
+ *                  "email": "test@gmail.com",
+ *                  "isAdmin": false,
+ *                  "applications": []
+ *               }
  * 
  * Context: 
  * - userContext contains currentUser data
@@ -44,6 +44,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log('\n currentUser => ',currentUser);
 
   useEffect(() => {
     async function getUser() {
@@ -69,22 +70,69 @@ function App() {
     setToken(token);
   }
 
+  function logout() {
+    JoblyApi.logout();
+    setToken("");
+  }
+
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
     setToken(token);
   }
 
-
   async function editProfile(username, formData) {
     const newData = await JoblyApi.editProfile(username, formData);
-
     setCurrentUser(newData);
   }
 
-  function logout() {
-    JoblyApi.logout();
-    setToken("");
+  async function applyToJob(event) {
+    const username = currentUser.username
+    const data = {
+      "username": username,
+      "jobId": undefined
+    }
+
+    if (event.target.tagName === "BUTTON") {
+      data.jobId = event.target.id
+    }
+
+    if (data.jobId) {
+      const response = await JoblyApi.applyToJob(data)
+      const jobId = response.applied;
+      setCurrentUser((currData) => ({ ...currData, applications: [...currentUser.applications, jobId] }))
+    }
   }
+
+  async function unapplyToJob(event) {
+    const username = currentUser.username
+    const data = {
+      "username": username,
+      "jobId": undefined
+    }
+
+    if (event.target.tagName === "BUTTON") {
+      data.jobId = event.target.id
+    }
+
+    if (data.jobId) {
+      const response = await JoblyApi.unapplyToJob(data)
+      const jobId = response.unapplied;
+      setCurrentUser((currData) => (
+        {
+          ...currData,
+          applications: currData.applications.filter((id) => id !== jobId)
+        }))
+    }
+  }
+
+  function handleApplyButton(event) {
+    if (event.target.innerText === 'Apply') {
+      applyToJob(event);
+    } else {
+      unapplyToJob(event);
+    }
+  }
+
 
   if (isLoading) {
     return (
@@ -99,7 +147,13 @@ function App() {
       <userContext.Provider value={{ currentUser }}>
         <BrowserRouter>
           <Nav logout={logout} />
-          <RoutesList login={login} signup={signup} editProfile={editProfile} />
+          <RoutesList
+            login={login}
+            signup={signup}
+            editProfile={editProfile}
+            handleApplyButton={handleApplyButton}
+            applyToJob={applyToJob}
+            unapplyToJob={unapplyToJob} />
         </BrowserRouter>
       </userContext.Provider>
     </div>

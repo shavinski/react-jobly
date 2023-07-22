@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import JoblyAPI from "./joblyApi";
+import JoblyAPI from "../joblyApi";
 import JobCard from "./JobCard";
-import SearchBar from "./SearchBar";
+import SearchBar from "../searchBars/SearchBar";
 import "./JobList.css";
-import userContext from './userContext'
+import userContext from '../userContext'
 import { Navigate } from 'react-router-dom'
 
 /**JobList component:
  *
  * Props:
- * - none
+ * - handleApplyButton
+ *    Function that handles applying and unapplying from job
  *
  * State:
  * - jobList array: list of props to pass into JobCard to create components
@@ -18,9 +19,9 @@ import { Navigate } from 'react-router-dom'
  */
 
 
-function JobList() {
+function JobList({ handleApplyButton }) {
   const [jobList, setJobList] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(userContext);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const [isLoading, setIsLoading] = useState(true);
   }
 
   return (
-    <div className='JobList col-md-8 offset-md-2'>
+    <div className='JobList col-md-8 offset-md-2' onClick={handleApplyButton}>
 
       <SearchBar handleSearch={handleSearch} />
       {jobList.map((j) => {

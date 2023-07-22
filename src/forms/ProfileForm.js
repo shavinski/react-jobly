@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import userContext from "./userContext";
-import Alert from "./Alert";
+import userContext from "../userContext";
+import Alert from "../Alert";
 import './ProfileForm.css'
 
 /** Renders signup or profile form
