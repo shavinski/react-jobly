@@ -16,28 +16,28 @@ function Nav({ logout }) {
 
   function loggedInNav() {
     return (
-      <ul className="navbar-nav ms-auto m-3">
-        <li className="nav-item me-4">
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item m-1">
           <NavLink className="nav-link" to="/companies">
             Companies
           </NavLink>
         </li>
-        <li className="nav-item me-4">
+        <li className="nav-item m-1">
           <NavLink className="nav-link" to="/jobs">
             Jobs
           </NavLink>
         </li>
-        <li className="nav-item me-4">
+        <li className="nav-item m-1">
           <NavLink className="nav-link" to="/applications">
             Applications
           </NavLink>
         </li>
-        <li className="nav-item me-4">
+        <li className="nav-item m-1">
           <NavLink className="nav-link" to="/profile">
             Profile
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item m-1">
           <Link className="nav-link" to="/" onClick={logout}>
             <button className="btn btn-secondary btn-sm">Log out {currentUser.first_name || currentUser.username}</button>
           </Link>
@@ -49,13 +49,13 @@ function Nav({ logout }) {
 
   function loggedOutNav() {
     return (
-      <ul className="navbar-nav ms-auto">
-        <li className="nav-item me-4">
+      <ul className="navbar-nav">
+        <li className="nav-item m-1">
           <NavLink className="nav-link" to="/login">
             Login
           </NavLink>
         </li>
-        <li className="nav-item me-4">
+        <li className="nav-item m-1">
           <NavLink className="nav-link" to="/signup">
             Sign Up
           </NavLink>
@@ -66,7 +66,7 @@ function Nav({ logout }) {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-md bg-dark d-flex align-items-center" data-bs-theme="dark">
+      <nav className="navbar navbar-expand-md bg-dark fixed-top" data-bs-theme="dark">
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <p className="logo">J</p>
           <p className="logo-name">Jobly</p>
@@ -83,7 +83,7 @@ function Nav({ logout }) {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="toggleMobileMenu">
+        <div className="collapse navbar-collapse flex-column" id="toggleMobileMenu">
           {currentUser ? loggedInNav() : loggedOutNav()}
         </div>
       </nav >
