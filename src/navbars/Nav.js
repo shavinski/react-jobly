@@ -83,7 +83,7 @@ function Nav({ logout }) {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse flex-column " id="toggleMobileMenu">
+        <div className="collapse navbar-collapse flex-column" id="toggleMobileMenu">
           {currentUser ? loggedInNav() : loggedOutNav()}
         </div>
       </nav >
