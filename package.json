@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && surge ./build/ shavinski-jobly.surge.sh"
+    "deploy": "REACT_APP_BASE_URL=https://shavinski-jobly.onrender.com npm run build && surge ./build/ shavinski-jobly.surge.sh"
   },
   "eslintConfig": {
     "extends": [
