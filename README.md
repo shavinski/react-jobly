@@ -19,9 +19,6 @@
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
-
-<h1>DEMO VIDEO GOES HERE</h1>
 
 
 
