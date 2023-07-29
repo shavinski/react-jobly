@@ -32,7 +32,7 @@ function Homepage() {
         ?
         <div className="homepage-container d-flex flex-column align-items-center">
           <h2 className="Homepage-desc" >Welcome back, {currentUser.firstName}</h2>
-          <img className="img-fluid" src="https://uploads-ssl.webflow.com/622b91f346bb477f6a17141b/624f364f6ad5b195bc3c1002_BDV-Blog-Illustration.webp"></img>
+          <img className="img-fluid" src="https://uploads-ssl.webflow.com/622b91f346bb477f6a17141b/624f364f6ad5b195bc3c1002_BDV-Blog-Illustration.webp" alt="a man and woman sitting at a desk on their laptops"></img>
         </div>
         :
         <div>
@@ -40,7 +40,9 @@ function Homepage() {
             <Link to='/login'><button className="btn btn-dark m-3">Login</button></Link>
             <Link to='/signup'><button className="btn btn-dark m-3">Signup</button></Link>
           </div>
-          <div className="homepage-container d-flex flex-column align-items-center"><img className="img-fluid" src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/124815iCD902962B2466A84?v=v2"></img></div>
+          <div className="homepage-container d-flex flex-column align-items-center">
+            <img className="img-fluid" src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/124815iCD902962B2466A84?v=v2" alt="and a man and woman having an interesting conversation"></img>
+            </div>
         </div>
       }
 

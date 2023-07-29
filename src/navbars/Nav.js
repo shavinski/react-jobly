@@ -49,7 +49,7 @@ function Nav({ logout }) {
 
   function loggedOutNav() {
     return (
-      <ul className="navbar-nav">
+      <ul className="navbar-nav ms-auto">
         <li className="nav-item m-1">
           <NavLink className="nav-link" to="/login">
             Login
