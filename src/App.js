@@ -37,14 +37,12 @@ import userContext from "./userContext";
  * App -> { Nav, RoutesList } 
  */
 
-const LOCAL_STORAGE_TOKEN_KEY = "token";
+const LOCAL_STORAGE_TOKEN_KEY = "";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log('\n currentUser => ',currentUser);
 
   useEffect(() => {
     async function getUser() {
@@ -137,7 +135,7 @@ function App() {
   if (isLoading) {
     return (
       <div>
-        <h1>Loading...</h1>
+        <h1 data-testid="loading" >Loading...</h1>
       </div>
     )
   }
