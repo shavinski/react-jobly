@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react"
-import JoblyAPI from "../joblyApi";
+import React, { useState, useEffect } from "react"
+import JoblyAPI from "../api/joblyApi";
 import JobCard from "../jobs/JobCard";
 import './CompanyList.css'
 import { useParams } from "react-router-dom";
@@ -31,7 +31,7 @@ function CompanyDetail({ handleApplyButton }) {
 
     if (!companyDetail) {
         return <h1>Loading...</h1>
-     }
+    }
 
     return (
         <div className="CompanyDetail col-md-8 offset-md-2" onClick={handleApplyButton}>

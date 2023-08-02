@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import userContext from '../userContext'
-import JoblyApi from "../joblyApi";
+import JoblyApi from "../api/joblyApi";
 import JobCard from "../jobs/JobCard";
 
 

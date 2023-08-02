@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import JoblyApi from "../joblyApi";
+import JoblyApi from "../api/joblyApi";
 import userContext from "../userContext";
 import "./Homepage.css"
 
@@ -37,12 +37,12 @@ function Homepage() {
         :
         <div>
           <div>
-            <Link to='/login'><button className="btn btn-dark m-3">Login</button></Link>
-            <Link to='/signup'><button className="btn btn-dark m-3">Signup</button></Link>
+            <Link to='/login'><button className="btn btn-dark m-3">Log In</button></Link>
+            <Link to='/signup'><button className="btn btn-dark m-3">Sign Up</button></Link>
           </div>
           <div className="homepage-container d-flex flex-column align-items-center">
             <img className="img-fluid" src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/124815iCD902962B2466A84?v=v2" alt="and a man and woman having an interesting conversation"></img>
-            </div>
+          </div>
         </div>
       }
 

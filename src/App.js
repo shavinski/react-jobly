@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import "bootswatch/dist/morph/bootstrap.min.css";
 import jwt_Decode from "jwt-decode";
 import Nav from "./navbars/Nav";
-import JoblyApi from "./joblyApi";
+import JoblyApi from "./api/joblyApi";
 import userContext from "./userContext";
 
 /** Loads initial app
