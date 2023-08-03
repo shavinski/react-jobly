@@ -1,9 +1,17 @@
 import { rest } from 'msw'
+import { json } from 'stream/consumers';
+import { TextDecoder } from 'util';
+
+const BASE_URL = 'http://localhost:3001'
 
 export const handlers = [
-    rest.post('localhost:3000/auth/token', (req, res, ctx) => {
-        const { username, password } = req.body;
-        console.log('user', username, 'pass', password);
+    rest.post(`${BASE_URL}/auth/token`, (req, res, ctx) => {
+        const uint8Array = new Uint8Array(req._body);
+        const decoder = new TextDecoder('utf-8');
+        const jsonString = decoder.decode(uint8Array);
+
+        const { username, password } = JSON.parse(jsonString);
+        console.log(username);
 
         if (username === 'test123' && password === 'password') {
             return res(
@@ -15,26 +23,37 @@ export const handlers = [
             return res(
                 ctx.status(401),
                 ctx.json({
-                    "error": {
-                        "message": "Invalid username/password",
-                        "status": 401
+                    error: {
+                        message: "Invalid username/password",
+                        status: 401
                     }
                 })
             )
         }
     }),
-    rest.get('/companies/:handle', (req, res, ctx) => {
+    rest.get(`${BASE_URL}/companies`, (req, res, ctx) => {
+
         return res(
             ctx.status(200),
             ctx.json({
-                "company": {
-                    "handle": "test-handle",
-                    "name": "Test Name",
-                    "description": "Test",
-                    "numEmployees": 1,
-                    "logoUrl": null,
-                    "jobs": []
-                }
+                companies: [
+                    {
+                        "handle": "test-handle1",
+                        "name": "Test Name1",
+                        "description": "Test1",
+                        "numEmployees": 1,
+                        "logoUrl": null,
+                        "jobs": []
+                    },
+                    {
+                        "handle": "test-handle2",
+                        "name": "Test Name2",
+                        "description": "Test2",
+                        "numEmployees": 1,
+                        "logoUrl": null,
+                        "jobs": []
+                    }
+                ]
             })
         )
     }),
