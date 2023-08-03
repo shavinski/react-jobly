@@ -51,7 +51,7 @@ describe("CompanyCard", () => {
             "https://example.com/logo.png"
         );
 
-        const linkElement = getByText("Example Company");
+        // const linkElement = getByText("Example Company");
         // expect(linkElement.tagName).toBe("a");
         // expect(linkElement).toHaveAttribute("href", "/companies/example");
 

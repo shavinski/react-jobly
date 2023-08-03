@@ -18,7 +18,9 @@ function CompanyList() {
 
   useEffect(() => {
     async function getCompanies() {
+      console.log('nice');
       const response = await JoblyAPI.getCompanies();
+      console.log(response);
       setCompanyList(response);
       setIsLoading(false);
     }
@@ -32,7 +34,7 @@ function CompanyList() {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1 data-testid='loading'>Loading...</h1>;
   }
 
   return (
@@ -43,6 +45,7 @@ function CompanyList() {
           <div className="CompanyList-list">
             {companyList.map(c => (
               <CompanyCard
+                data-testid="resolved"
                 key={c.handle}
                 comp={c}
               />
