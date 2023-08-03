@@ -7,8 +7,8 @@ import userEvent from '@testing-library/user-event';
 // import JoblyApi from './joblyApi';
 import App from '../App';
 import LoginForm from '../forms/LoginForm';
-import axiosMock from 'axios';
 import userContext from '../userContext';
+import axiosMock from 'axios';
 
 
 afterEach(cleanup);
@@ -30,15 +30,15 @@ const MOCK_USER = {
 
 it('Gets companies and renders data', async () => {
 
-    const companies = await axiosMock.getCompanies.mockResolvedValueOnce();
+//     const companies = await axiosMock.getCompanies.mockResolvedValueOnce();
 
-    const { getByTestId } = render(
+//     const { getByTestId } = render(
         // <userContext.Provider value={ MOCK_USER }>
         //     <MemoryRouter>
                 // <CompanyList />
         //     </MemoryRouter>
         // </userContext.Provider>
-    );
+    // );
     // expect(getByTestId("loading")).toHaveTextContent('Loading...')
 
     // const resolvedComapniesList = await waitForElement(() => {

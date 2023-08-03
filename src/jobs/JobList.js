@@ -39,7 +39,7 @@ function JobList({ handleApplyButton }) {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1 data-testid='loading'>Loading...</h1>;
   }
 
   if (!currentUser) {
