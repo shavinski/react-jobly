@@ -68,7 +68,6 @@ function App() {
     setToken(token);
   }
 
-  console.log(currentUser);
   function logout() {
     JoblyApi.logout();
     setToken("");

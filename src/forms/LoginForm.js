@@ -22,11 +22,10 @@ function LoginForm({ login }) {
         evt.preventDefault();
 
         try {
-            console.log(formData);
             await login(formData);
             navigate("/");
         } catch (err) {
-            console.log('ERROR', err);
+            console.log(err);
             setFlashMessage(err);
             return;
         }

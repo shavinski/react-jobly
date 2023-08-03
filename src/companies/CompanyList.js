@@ -18,9 +18,7 @@ function CompanyList() {
 
   useEffect(() => {
     async function getCompanies() {
-      console.log('nice');
       const response = await JoblyAPI.getCompanies();
-      console.log(response);
       setCompanyList(response);
       setIsLoading(false);
     }

@@ -18,8 +18,6 @@ function JobCard({ job }) {
         color: "white"
     }
 
-    console.log('this is the job', job);
-
     function applyButton() {
         return (
             <button id={job.id} className="btn btn-sm fw-bold mt-3">

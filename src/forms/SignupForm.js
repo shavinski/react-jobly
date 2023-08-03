@@ -49,7 +49,7 @@ function SignUpForm({ signup }) {
     }));
   }
 
-  return (  
+  return (
     <div className="SignupForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="SignupForm-title mt-5">Sign Up</h3>
@@ -57,8 +57,9 @@ function SignUpForm({ signup }) {
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label className="form-label">Username</label>
+                <label className="form-label" htmlFor="username">Username</label>
                 <input
+                  id="username"
                   name="username"
                   className="form-control"
                   value={formData.username}
@@ -66,8 +67,9 @@ function SignUpForm({ signup }) {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Password</label>
+                <label className="form-label" htmlFor="password">Password</label>
                 <input
+                  id="password"
                   type="password"
                   name="password"
                   className="form-control"
@@ -77,8 +79,9 @@ function SignUpForm({ signup }) {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">First name</label>
+                <label className="form-label" htmlFor="firstname">First name</label>
                 <input
+                  id="firstname"
                   name="firstName"
                   className="form-control"
                   value={formData.firstName}
@@ -86,8 +89,9 @@ function SignUpForm({ signup }) {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Last name</label>
+                <label className="form-label" htmlFor="lastname">Last name</label>
                 <input
+                  id="lastname"
                   name="lastName"
                   className="form-control"
                   value={formData.lastName}
@@ -95,8 +99,9 @@ function SignUpForm({ signup }) {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Email</label>
+                <label className="form-label" htmlFor="email">Email</label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   className="form-control"

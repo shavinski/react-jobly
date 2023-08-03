@@ -11,14 +11,16 @@ afterEach(cleanup);
 
 const mockUserContext = {
     currentUser: {
-        // Add any properties required by the JobCard component
-        // For example:
-        username: 'testuser',
+        username: "test-user",
+        firstName: "testfn",
+        lastName: "testln",
+        email: "test@gmail.com",
+        isAdmin: false,
         applications: [2],
     },
 };
 
-describe("CompanyCard", () => {
+describe("JobCard", () => {
     // Define a mock company object for testing
     const mockJob1 = {
         id: 1,
@@ -38,9 +40,8 @@ describe("CompanyCard", () => {
         companyName: "test-name2"
     };
 
-    it("renders company card with correct content", () => {
-        // Render the CompanyCard component with the mock company object
-        const { getByText, getByAltText } = render(
+    it("renders job card with correct content, not applied", () => {
+        const { getByText } = render(
             <userContext.Provider value={mockUserContext}>
                 <MemoryRouter>
                     <JobCard job={mockJob1} />
@@ -48,12 +49,33 @@ describe("CompanyCard", () => {
             </userContext.Provider>
         );
 
-        // Assertions
-        const jobTitleElement = screen.getByText(/Test Title 1/);
+        const jobTitleElement = getByText(/Test Title 1/);
         expect(jobTitleElement).toBeInTheDocument();
 
-        const applyButtonElement = screen.getByText(/Apply/);
+        const companyNameElement = getByText(/test-name1/);
+        expect(companyNameElement).toBeInTheDocument();
+
+        const applyButtonElement = getByText(/Apply/);
+        expect(applyButtonElement).toBeInTheDocument();
+
+    });
+
+    it("renders company card with correct content, user applied", () => {
+        const { getByText } = render(
+            <userContext.Provider value={mockUserContext}>
+                <MemoryRouter>
+                    <JobCard job={mockJob2} />
+                </MemoryRouter>
+            </userContext.Provider>
+        );
+
+        const jobTitleElement = getByText(/Test Title 2/);
         expect(jobTitleElement).toBeInTheDocument();
 
+        const companyNameElement = getByText(/test-name2/);
+        expect(companyNameElement).toBeInTheDocument();
+
+        const applyButtonElement = getByText(/Unapply/);
+        expect(applyButtonElement).toBeInTheDocument();
     });
 });

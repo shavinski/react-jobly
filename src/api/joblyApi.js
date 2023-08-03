@@ -68,7 +68,6 @@ class JoblyApi {
   // /companies?nameLike='islandboii' [GET]
   static async getCompanies(nameLike) {
     let res = await this.request(`companies/`, { nameLike });
-    console.log('companies',res);
     return res.companies;
   }
 
