@@ -4,10 +4,11 @@ import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter } from 'react-router-dom';
 import LoginForm from './LoginForm';
 
-afterEach(cleanup);
 const login = jest.fn()
+afterEach(cleanup);
 
 describe("LoginForm", () => {
+    afterEach(cleanup);
 
     test('Renders log in form correctly', () => {
         const { getByText } = render(
@@ -38,6 +39,8 @@ describe("handleChange function", () => {
 })
 
 describe("handleSubmit function", () => {
+    afterEach(cleanup);
+
     test('handleSubmit calls login and navigates on successful login', async () => {
         // Create mock login function and navigate function
         const login = jest.fn().mockResolvedValue();
