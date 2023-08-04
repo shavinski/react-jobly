@@ -13,7 +13,7 @@ export const handlers = [
         console.log('jsonText', jsonText);
         // Now you can access the data from the request body
         const { username, password } = jsonData;
-        console.log('\n','username', username, 'password', password, '\n');
+        console.log('\n', 'username', username, 'password', password, '\n');
         if (username !== "testuser") {
             return res(
                 ctx.status(400),
@@ -32,5 +32,28 @@ export const handlers = [
             })
         )
     }),
+
+    rest.get(`${BASE_URL}/companies/:handle`, (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json({
+                "company": {
+                    "handle": "test-handle",
+                    "name": "test-name",
+                    "description": "test-description",
+                    "numEmployees": 1,
+                    "logoUrl": '',
+                    "jobs": [
+                        {
+                            "id": 1,
+                            "title": "test-title",
+                            "salary": 130000,
+                            "equity": "0"
+                        }
+                    ]
+                }
+            })
+        )
+    })
 
 ]

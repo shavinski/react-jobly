@@ -3,6 +3,8 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent, screen, waitFor, findByText, cleanup, act, waitForElementToBeRemoved } from '@testing-library/react';
 import JoblyApi from './joblyApi';
 import App from '../App'
+import CompanyDetail from '../companies/CompanyDetail';
+import { MemoryRouter } from 'react-router-dom';
 import { server } from '../mocks/server'
 
 
@@ -49,7 +51,7 @@ describe('Login method', () => {
     afterAll(() => server.close())
 
     test('successfully log in a user', async () => {
-        const { getByText, getByRole } = render(
+        const { getByLabelText, getByRole } = render(
             <App />
         );
 
@@ -58,15 +60,17 @@ describe('Login method', () => {
         const submitButton = getByRole("button", { name: 'Submit' });
         expect(submitButton).toBeInTheDocument();
 
-        const usernameInput = screen.getByLabelText(/Username/);
-        const passwordInput = screen.getByLabelText(/Password/);
+        const usernameInput = getByLabelText(/Username/);
+        const passwordInput = getByLabelText(/Password/);
         fireEvent.change(usernameInput, { target: { value: 'testuser' } });
         fireEvent.change(passwordInput, { target: { value: 'password' } });
 
         expect(usernameInput.value).toBe('testuser');
         expect(passwordInput.value).toBe('password');
 
-        fireEvent.click(submitButton);
+        act(() => {
+            fireEvent.click(submitButton);
+        })
     })
 
     // test('unsuccessful log in displays error', async() => {
@@ -96,6 +100,18 @@ describe('Login method', () => {
     //     })
     // })
 
+})
+
+describe('getCompany method', () => {
+    const handleApplyButton = jest.fn();
+
+    test('Sets token to be empty string with token set to valid token', () => {
+        const { getByText, getByAltText } = render(
+            <MemoryRouter>
+                <CompanyDetail apply={handleApplyButton} />
+            </MemoryRouter>
+        );
+    })
 })
 
 
