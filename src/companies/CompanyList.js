@@ -16,6 +16,8 @@ function CompanyList() {
   const [companyList, setCompanyList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+
+
   useEffect(() => {
     async function getCompanies() {
       const response = await JoblyAPI.getCompanies();
@@ -36,7 +38,7 @@ function CompanyList() {
   }
 
   return (
-    <div className='CompanyList col-md-8 offset-md-2' data-testid="resolved">
+    <div data-testid="resolved" className='CompanyList col-md-8 offset-md-2'>
       <SearchBar handleSearch={handleSearch} className />
       {companyList.length
         ? (

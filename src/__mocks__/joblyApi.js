@@ -1,3 +1,3 @@
-export default {
-    getCompanies: jest.fn().mockResolvedValue({ companies: [] })
-}
+// export default {
+//     getCompanies: jest.fn().mockResolvedValue({ companies: [] })
+// }
