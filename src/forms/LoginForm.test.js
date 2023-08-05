@@ -2,7 +2,11 @@ import React from 'react';
 import { render, screen, cleanup, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter } from 'react-router-dom';
+
+import JoblyApi from '../api/joblyApi';
 import LoginForm from './LoginForm';
+import App from '../App';
+
 
 const login = jest.fn()
 afterEach(cleanup);
@@ -19,6 +23,37 @@ describe("LoginForm", () => {
 
         const loginTitle = getByText(/Log In/);
         expect(loginTitle).toBeInTheDocument();
+    });
+});
+
+describe('Login method', () => {
+    afterEach(() => {
+        jest.clearAllMocks(); // Clear mock calls after each test
+    });
+
+    JoblyApi.request = jest.fn(async (endpoint, data = {}, method = 'get') => {
+        // Mock the data that the method should return
+        const mockData = {
+            token: 'mock-test-token',
+        };
+        return mockData;
+    });
+
+    test('should return the token when login is successful', async () => {
+        const { getByTestId } = render(
+            <App />
+        );
+        // Mock login data
+        const loginData = {
+            username: 'testuser',
+            password: 'testpassword',
+        };
+
+        const res = await JoblyApi.request('auth/token', loginData);
+
+        expect(JoblyApi.request).toHaveBeenCalledWith('auth/token', loginData);
+
+        expect(res.token).toBe('mock-test-token');
     });
 });
 

@@ -36,14 +36,13 @@ function CompanyList() {
   }
 
   return (
-    <div className='CompanyList col-md-8 offset-md-2'>
+    <div className='CompanyList col-md-8 offset-md-2' data-testid="resolved">
       <SearchBar handleSearch={handleSearch} className />
       {companyList.length
         ? (
           <div className="CompanyList-list">
             {companyList.map(c => (
               <CompanyCard
-                data-testid="resolved"
                 key={c.handle}
                 comp={c}
               />

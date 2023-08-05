@@ -30,13 +30,13 @@ function CompanyDetail({ handleApplyButton }) {
     }, []);
 
     if (!companyDetail) {
-        return <h1>Loading...</h1>
+        return <h1 data-testid="loading" >Loading...</h1>
     }
 
     return (
         <div className="CompanyDetail col-md-8 offset-md-2" onClick={handleApplyButton}>
             <h3 className="m-4">Our culture at {companyDetail.name}</h3>
-            <h5 className="mb-5">{companyDetail.description}</h5>
+            <h5 className="mb-5" data-testid="resolved">{companyDetail.description}</h5>
             {companyDetail.jobs.map((j) => {
                 return <JobCard job={j} key={j.id} />
             })}

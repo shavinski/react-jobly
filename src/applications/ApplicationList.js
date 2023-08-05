@@ -16,7 +16,7 @@ function ApplicationList({ handleApplyButton }) {
     const { currentUser } = useContext(userContext);
     const [applied, setApplied] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
+    
     useEffect(() => {
         async function getJobs() {
             const response = await JoblyApi.getJobs();
@@ -29,7 +29,7 @@ function ApplicationList({ handleApplyButton }) {
 
 
     if (isLoading) {
-        return <h1>Loading...</h1>;
+        return <h1 data-testid='loading'>Loading...</h1>;
     }
 
     return (
@@ -37,7 +37,7 @@ function ApplicationList({ handleApplyButton }) {
 
             {applied.length
                 ? (
-                    <div className="col-md-8 offset-md-2" onClick={handleApplyButton}>
+                    <div className="col-md-8 offset-md-2" onClick={handleApplyButton} data-testid='resolved'>
                         <h1 className="mt-3">All your applications!</h1>
                         {applied.map((job) => {
                             return <JobCard job={job} key={job.id} />

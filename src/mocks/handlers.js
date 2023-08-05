@@ -10,21 +10,19 @@ export const handlers = [
         // Assuming the ArrayBuffer contains UTF-8 encoded JSON data, you can parse it as follows:
         const jsonText = new TextDecoder().decode(arrayBuffer);
         const jsonData = JSON.parse(jsonText);
-        console.log('jsonText', jsonText);
         // Now you can access the data from the request body
         const { username, password } = jsonData;
-        console.log('\n', 'username', username, 'password', password, '\n');
-        if (username !== "testuser") {
-            return res(
-                ctx.status(400),
-                ctx.json({
-                    "error": {
-                        "message": "Invalid username/password",
-                        "status": 401
-                    }
-                })
-            )
-        }
+        // if (username !== "testuser") {
+        //     return res(
+        //         ctx.status(400),
+        //         ctx.json({
+        //             "error": {
+        //                 "message": "Invalid username/password",
+        //                 "status": 401
+        //             }
+        //         })
+        //     )
+        // }
         return res(
             ctx.status(200),
             ctx.json({
@@ -33,7 +31,7 @@ export const handlers = [
         )
     }),
 
-    rest.get(`${BASE_URL}/companies/:handle`, (req, res, ctx) => {
+    rest.get(`${BASE_URL}/companies`, (req, res, ctx) => {
         return res(
             ctx.status(200),
             ctx.json({
