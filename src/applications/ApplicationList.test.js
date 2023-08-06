@@ -1,46 +1,72 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import '@testing-library/jest-dom'
+import React from 'react';
+import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { MemoryRouter } from 'react-router-dom';
+import userContext from '../userContext';
+import { server } from '../mocks/server';
+
 import ApplicationList from './ApplicationList';
-import login from '../App'
 
-import testUserContext from '../testUserContext'
-import App from '../App';
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
 
-const testUser1 = {
-    "username": "testUser1",
-    "firstName": "test1FN",
-    "lastName": "last1LN",
-    "isAdmin": false,
-    "email": "test1@test.com",
-    "applications": [1, 2, 3]
+const testUser = {
+    currentUser: {
+        username: "testUser",
+        firstName: "testfn",
+        lastName: "testln",
+        email: "test@gmail.com",
+        isAdmin: false,
+        applications: [2],
+    },
 };
 
 const testUser2 = {
-    "username": "testUser2",
-    "firstName": "test2FN",
-    "lastName": "last2LN",
-    "isAdmin": false,
-    "email": "test2@test.com",
-    "applications": []
+    currentUser: {
+        "username": "testUser2",
+        "firstName": "test2FN",
+        "lastName": "last2LN",
+        "isAdmin": false,
+        "email": "test2@test.com",
+        "applications": []
+    }
 }
 
-// Testing push
+describe("ApplicationList", () => {
+    const handleApplyButton = jest.fn();
 
-/**
- * Testing push
- * TODO:
- * - write test that checks user applications show
- *  - test negative if no applications make sure test for "No applications sent so far"
- *
- * - mock a button press that when user clicks unapply button on page it chagnes to apply
- *
- * - integration test that test that when unapply is clicked
- *  - check that unappy switches to -> apply
- *  - check that when user refreshes page that the application is gone
- *
- */
+    test('Renders correct information with user that has applications', async () => {
+        const { getByTestId } = render(
+            <userContext.Provider value={testUser}>
+                <MemoryRouter>
+                    <ApplicationList handleApplyButton={handleApplyButton} />
+                </MemoryRouter>
+            </userContext.Provider>
+        );
 
-test('test application page', () => {
+        expect(getByTestId('loading')).toHaveTextContent('Loading...');
+
+        const resolved = await waitFor(() => getByTestId('resolved'));
+
+        expect(resolved).toHaveTextContent('All your applications!');
+        expect(resolved).toHaveTextContent('fake-job-title2');
+    });
+
+    test('Renders correct information with user that has no applications', async () => {
+        const { getByTestId } = render(
+            <userContext.Provider value={testUser2}>
+                <MemoryRouter>
+                    <ApplicationList handleApplyButton={handleApplyButton} />
+                </MemoryRouter>
+            </userContext.Provider>
+        );
+
+        expect(getByTestId('loading')).toHaveTextContent('Loading...');
+
+        const resolved = await waitFor(() => getByTestId('resolved'));
+
+        expect(resolved).toHaveTextContent('No applications sent so far!');
+    });
 
 });

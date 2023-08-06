@@ -24,11 +24,7 @@ class JoblyApi {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = method === "get" ? data : {};
-    // if data is empty(falsey) => companies/
-    // if data not empty => companies/{data}
 
-    // with GET, data is empty, params is not
-    // with anything other than GET params is empty and data is not
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
@@ -65,7 +61,6 @@ class JoblyApi {
    * - [{ handle, name, description, numEmployees, logoUrl }...]
    */
 
-  // /companies?nameLike='islandboii' [GET]
   static async getCompanies(nameLike) {
     let res = await this.request(`companies/`, { nameLike });
     return res.companies;
