@@ -25,7 +25,6 @@ function LoginForm({ login }) {
             await login(formData);
             navigate("/");
         } catch (err) {
-            console.log(err);
             setFlashMessage(err);
             return;
         }

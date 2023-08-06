@@ -40,7 +40,7 @@ describe("ProfileForm", () => {
 describe("handleChange function", () => {
 
     test('handleChange correctly sets form data', async () => {
-        render(
+        const { getByLabelText, getByRole } = render(
             <userContext.Provider value={mockUserContext}>
                 <MemoryRouter>
                     <ProfileForm editProfile={editProfile} />
@@ -48,21 +48,19 @@ describe("handleChange function", () => {
             </userContext.Provider>
         );
 
-        // Simulate a change event for the first name input
-        const firstNameInput = screen.getByLabelText('First Name');
+        const firstNameInput = getByLabelText('First Name');
+        const lastNameInput = getByLabelText(/Last Name/);
+        const emailInput = getByLabelText(/Email/);
+
         fireEvent.change(firstNameInput, { target: { value: 'changefn' } });// Simulate a change event for the username input
-        // Simulate a change event for the last name input
-        const lastNameInput = screen.getByLabelText(/Last Name/);
         fireEvent.change(lastNameInput, { target: { value: 'changeln' } });
-        // Simulate a change event for the username input
-        const emailInput = screen.getByLabelText(/Email/);
         fireEvent.change(emailInput, { target: { value: 'changeemail@gmail.com' } });
 
         expect(firstNameInput.value).toBe('changefn');
         expect(lastNameInput.value).toBe('changeln');
         expect(emailInput.value).toBe('changeemail@gmail.com');
 
-        const saveChangesButton = screen.getByRole('button', { name: 'Save Changes' })
+        const saveChangesButton = getByRole('button', { name: 'Save Changes' })
         await act(async () => {
             fireEvent.click(saveChangesButton);
         });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, waitForElement } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter } from 'react-router-dom';
 import Homepage from './Homepage';
@@ -19,19 +19,35 @@ const mockUserContext = {
     },
 };
 
+const mockNoUserContext = {
+    currentUser: {},
+};
+
 describe("Homepage", () => {
 
-    test('Renders homepage without any errors', () => {
-        // const { getByText } = render(
-        //     <userContext.Provider value={mockUserContext}>
-        //         <MemoryRouter>
-        //             <Homepage />
-        //         </MemoryRouter>
-        //     </userContext.Provider>
-        // );
+    test('Renders homepage with user without any errors', () => {
+        const { getByText } = render(
+            <userContext.Provider value={mockUserContext}>
+                <MemoryRouter>
+                    <Homepage />
+                </MemoryRouter>
+            </userContext.Provider>
+        )
 
-        // const welcomeFirstName = getByText(/Welcome back, testfn/);
-        // expect(welcomeFirstName).toBeInTheDocument();
+        const welcomeFirstName = getByText(/Welcome back, testfn/);
+        expect(welcomeFirstName).toBeInTheDocument();
     });
-    
+
+    test('Renders homepage with no user without any errors', () => {
+        const { getByText } = render(
+            <userContext.Provider value={mockNoUserContext}>
+                <MemoryRouter>
+                    <Homepage />
+                </MemoryRouter>
+            </userContext.Provider>);
+
+        const welcomeFirstName = getByText(/All the jobs that you could ever imagine, all in one place./);
+        expect(welcomeFirstName).toBeInTheDocument();
+    });
+
 });

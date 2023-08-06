@@ -22,7 +22,7 @@ const testUser = {
         "email": "test2@test.com",
         "applications": []
     }
-}
+};
 
 describe('Login method', () => {
     test('Successfully set a token upon login', async () => {
@@ -30,19 +30,9 @@ describe('Login method', () => {
 
         const token = await JoblyApi.login(data);
 
-        expect(token).toBe("mock-token")
-    })
-
-    // test('Get error on bad login', async () => {
-    //     const data = { username: "baduser", password: "badpassword" };
-
-    //     const err = await JoblyApi.login(data);
-
-    //     console.log()
-
-    //     expect(err.error.message).toBe("Invalid username/password")
-    // })
-})
+        expect(token).toBe("mock-token");
+    });
+});
 
 describe('signUp method', () => {
     test('Successfully set a token upon sign up', async () => {
@@ -57,8 +47,8 @@ describe('signUp method', () => {
         const token = await JoblyApi.signup(data);
 
         expect(token).toBe("mock-token")
-    })
-})
+    });
+});
 
 describe('Logout method', () => {
     test('Sets token to be empty string with token set to valid token', () => {
@@ -67,7 +57,7 @@ describe('Logout method', () => {
         JoblyApi.logout();
 
         expect(JoblyApi.token).toEqual('');
-    })
+    });
 
     test('Sets token to be empty string with token set to empty string', () => {
         JoblyApi.token = 'mock-token';
@@ -98,8 +88,8 @@ describe('editProfile method', () => {
             isAdmin: false,
             email: 'mock@email.com',
             applications: [1]
-        })
-    })
+        });
+    });
 });
 
 describe('getUser method', () => {

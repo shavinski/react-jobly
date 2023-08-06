@@ -29,7 +29,6 @@ class JoblyApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
-      console.log('err in joblApi', err);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -90,7 +89,7 @@ class JoblyApi {
   *              }
   */
   static async applyToJob(data) {
-    console.log(data.username, data.jobId)
+    (data.username, data.jobId)
     let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "post")
     return res;
   }
@@ -202,9 +201,7 @@ class JoblyApi {
    * -Error Message(s)
    */
   static async editProfile(username, formData) {
-    console.log(username, formData);
     let res = await this.request(`users/${username}`, formData, 'patch');
-    console.log('res editProfile', res)
     return res.user;
   }
 

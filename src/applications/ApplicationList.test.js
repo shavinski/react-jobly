@@ -1,15 +1,19 @@
 import React from 'react';
-import { render, getByTestId } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter } from 'react-router-dom';
 import userContext from '../userContext';
+import { server } from '../mocks/server';
 
 import ApplicationList from './ApplicationList';
-import JoblyApi from '../api/joblyApi';
 
-const mockUserContext = {
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
+
+const testUser = {
     currentUser: {
-        username: "test-user",
+        username: "testUser",
         firstName: "testfn",
         lastName: "testln",
         email: "test@gmail.com",
@@ -30,54 +34,39 @@ const testUser2 = {
 }
 
 describe("ApplicationList", () => {
-    afterEach(() => {
-        jest.clearAllMocks(); // Clear mock calls after each test
-    });
-
     const handleApplyButton = jest.fn();
 
-    JoblyApi.request = jest.fn(async (endpoint, data = {}, method = 'get') => {
-        const mockData = {
-            "jobs": [
-                {
-                    "id": 1,
-                    "title": "Conservator, furniture",
-                    "salary": 110000,
-                    "equity": "0",
-                    "companyHandle": "watson-davis",
-                    "companyName": "Watson-Davis"
-                },
-                {
-                    "id": 2,
-                    "title": "Information officer",
-                    "salary": 200000,
-                    "equity": "0",
-                    "companyHandle": "hall-mills",
-                    "companyName": "Hall-Mills"
-                }
-            ]
-        };
-
-        return mockData;
-    });
-    test('Renders ApplicationList without any errors', async () => {
-        const { getByText } = render(
-            <userContext.Provider value={mockUserContext}>
+    test('Renders correct information with user that has applications', async () => {
+        const { getByTestId } = render(
+            <userContext.Provider value={testUser}>
                 <MemoryRouter>
                     <ApplicationList handleApplyButton={handleApplyButton} />
                 </MemoryRouter>
             </userContext.Provider>
         );
 
-        // expect(getByTestId('loading')).toHaveTextContent('Loading...');
+        expect(getByTestId('loading')).toHaveTextContent('Loading...');
 
-        // const resolved = await waitFor(() => getByTestId('resolved'));
+        const resolved = await waitFor(() => getByTestId('resolved'));
 
-        // expect(resolved).toHaveTextContent('Conservator, furniture');
-        // expect(resolved).toHaveTextContent('Information officer');
+        expect(resolved).toHaveTextContent('All your applications!');
+        expect(resolved).toHaveTextContent('fake-job-title2');
+    });
 
-        // expect(JoblyApi.request).toHaveBeenCalledTimes(1)
-        // expect(JoblyApi.request).toHaveBeenCalledWith("jobs")
+    test('Renders correct information with user that has no applications', async () => {
+        const { getByTestId } = render(
+            <userContext.Provider value={testUser2}>
+                <MemoryRouter>
+                    <ApplicationList handleApplyButton={handleApplyButton} />
+                </MemoryRouter>
+            </userContext.Provider>
+        );
+
+        expect(getByTestId('loading')).toHaveTextContent('Loading...');
+
+        const resolved = await waitFor(() => getByTestId('resolved'));
+
+        expect(resolved).toHaveTextContent('No applications sent so far!');
     });
 
 });
