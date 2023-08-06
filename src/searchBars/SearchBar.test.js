@@ -20,7 +20,7 @@ describe("handleSearchForm", () => {
         expect(searchButton).toBeInTheDocument();
     });
 
-    test('Typing in search bar works and search button calle handleSearch', async () => {
+    test('Typing in search bar works and search button called handleSearch', async () => {
         const { getByText } = render(
             <MemoryRouter>
                 <SearchBar handleSearch={handleSearch} />

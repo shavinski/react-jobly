@@ -90,6 +90,7 @@ class JoblyApi {
   *              }
   */
   static async applyToJob(data) {
+    console.log(data.username, data.jobId)
     let res = await this.request(`users/${data.username}/jobs/${data.jobId}`, data, "post")
     return res;
   }
@@ -203,6 +204,7 @@ class JoblyApi {
   static async editProfile(username, formData) {
     console.log(username, formData);
     let res = await this.request(`users/${username}`, formData, 'patch');
+    console.log('res editProfile', res)
     return res.user;
   }
 

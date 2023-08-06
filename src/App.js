@@ -150,8 +150,7 @@ function App() {
             signup={signup}
             editProfile={editProfile}
             handleApplyButton={handleApplyButton}
-            applyToJob={applyToJob}
-            unapplyToJob={unapplyToJob} />
+          />
         </BrowserRouter>
       </userContext.Provider>
     </div>

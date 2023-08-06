@@ -2,9 +2,15 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, waitFor, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { server } from '../mocks/server';
 
 import JoblyApi from '../api/joblyApi';
 import CompanyList from '../companies/CompanyList';
+
+
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
 
 describe('getCompanies method', () => {
     // afterEach(() => {
@@ -40,14 +46,30 @@ describe('getCompanies method', () => {
             <CompanyList />, { wrapper: BrowserRouter }
         );
 
-    //     expect(getByTestId('loading')).toHaveTextContent('Loading...');
+        //     expect(getByTestId('loading')).toHaveTextContent('Loading...');
 
-    //     const resolved = await waitFor(() => getByTestId('resolved'));
+        //     const resolved = await waitFor(() => getByTestId('resolved'));
 
-    //     expect(resolved).toHaveTextContent('test-name1');
-    //     expect(resolved).toHaveTextContent('test-name2');
+        //     expect(resolved).toHaveTextContent('test-name1');
+        //     expect(resolved).toHaveTextContent('test-name2');
 
-    //     expect(JoblyApi.request).toHaveBeenCalledTimes(1)
-    //     expect(JoblyApi.request).toHaveBeenCalledWith("companies/", { "nameLike": undefined })
+        //     expect(JoblyApi.request).toHaveBeenCalledTimes(1)
+        //     expect(JoblyApi.request).toHaveBeenCalledWith("companies/", { "nameLike": undefined })
     });
 });
+
+describe('getCompanies method', () => {
+    test('Properly gets and renders all companies ', async () => {
+        const { getByText, getByTestId } = render(
+            <CompanyList />, { wrapper: BrowserRouter }
+        )
+
+        expect(getByTestId('loading')).toHaveTextContent('Loading...');
+
+        const resolved = await waitFor(() => getByTestId('resolved'));
+
+        expect(resolved).toHaveTextContent('test-name1');
+        expect(resolved).toHaveTextContent('test-desc1');
+        expect(resolved).toHaveTextContent('1');
+    })
+})

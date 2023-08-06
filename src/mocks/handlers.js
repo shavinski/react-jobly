@@ -39,14 +39,21 @@ export const handlers = [
         )
     }),
 
-    // rest.patch(`${BASE_URL}/users/:username`, async (req, res, ctx) => {
-    //     return res(
-    //         ctx.status(200),
-    //         ctx.json({
-    //             token: 'mock-token'
-    //         })
-    //     )
-    // }),
+    rest.patch(`${BASE_URL}/users/:username`, async (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json({
+                user: {
+                    username: 'mockUser',
+                    firstName: 'changedFn',
+                    lastName: 'changedLn',
+                    isAdmin: false,
+                    email: 'mock@email.com',
+                    applications: [1]
+                }
+            })
+        )
+    }),
 
     rest.get(`${BASE_URL}/users/:username`, (req, res, ctx) => {
         return res(
@@ -77,6 +84,13 @@ export const handlers = [
                         "description": "test-desc1",
                         "numEmployees": 1,
                         "logoUrl": null
+                    },
+                    {
+                        "handle": "test-handle2",
+                        "name": "test-name2",
+                        "description": "test-desc2",
+                        "numEmployees": 2,
+                        "logoUrl": null
                     }
                 ]
             })
@@ -85,6 +99,14 @@ export const handlers = [
 
     rest.get(`${BASE_URL}/companies/:handle`, (req, res, ctx) => {
         const { handle } = req.params
+
+        if (handle === 'bad-handle') {
+            return res(
+                ctx.status(404),
+                ctx.json([`No company: ${handle}`])
+            )
+        }
+
         return res(
             ctx.status(200),
             ctx.json({
@@ -154,5 +176,25 @@ export const handlers = [
         )
     }),
 
+    rest.post(`${BASE_URL}/users/:username/jobs/:id`, (req, res, ctx) => {
+        const { id } = req.params
 
+        return res(
+            ctx.status(200),
+            ctx.json({
+                applied: id
+            })
+        )
+    }),
+
+    rest.delete(`${BASE_URL}/users/:username/jobs/:id`, (req, res, ctx) => {
+        const { id } = req.params
+
+        return res(
+            ctx.status(200),
+            ctx.json({
+                unapplied: id
+            })
+        )
+    })
 ]

@@ -8,7 +8,6 @@ import { server } from '../mocks/server';
 import CompanyList from '../companies/CompanyList';
 import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
 import CompanyDetail from '../companies/CompanyDetail';
-import exp from 'constants';
 
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
@@ -45,7 +44,7 @@ describe('Login method', () => {
     // })
 })
 
-describe('Login method', () => {
+describe('signUp method', () => {
     test('Successfully set a token upon sign up', async () => {
         const data = {
             username: "testuser",
@@ -79,6 +78,30 @@ describe('Logout method', () => {
     });
 });
 
+describe('editProfile method', () => {
+    test('Correctly edits a user profile information', async () => {
+        const formData = {
+            username: 'mockUser',
+            firstName: 'mockfn',
+            lastName: 'mockln',
+            isAdmin: false,
+            email: 'mock@email.com',
+            applications: [1]
+        }
+
+        const response = await JoblyApi.editProfile('originalName', formData)
+
+        expect(response).toEqual({
+            username: 'mockUser',
+            firstName: 'changedFn',
+            lastName: 'changedLn',
+            isAdmin: false,
+            email: 'mock@email.com',
+            applications: [1]
+        })
+    })
+});
+
 describe('getUser method', () => {
     test('Properly gets a single user', async () => {
 
@@ -91,29 +114,33 @@ describe('getUser method', () => {
                 "lastName": "user",
                 "email": "fake@user.com",
                 "isAdmin": false,
-                "applications": [
-                    1
-                ]
-            }
-        )
+                "applications": [1]
+            });
     });
 });
 
 describe('getCompanies method', () => {
     test('Properly gets and renders all companies ', async () => {
-        const { getByText, getByTestId } = render(
-            <CompanyList />, { wrapper: BrowserRouter }
-        )
+        const companies = await JoblyApi.getCompanies();
 
-        expect(getByTestId('loading')).toHaveTextContent('Loading...');
-
-        const resolved = await waitFor(() => getByTestId('resolved'));
-
-        expect(resolved).toHaveTextContent('test-name1');
-        expect(resolved).toHaveTextContent('test-desc1');
-        expect(resolved).toHaveTextContent('1');
-    })
-})
+        expect(companies).toEqual([
+            {
+                "handle": "test-handle1",
+                "name": "test-name1",
+                "description": "test-desc1",
+                "numEmployees": 1,
+                "logoUrl": null
+            },
+            {
+                "handle": "test-handle2",
+                "name": "test-name2",
+                "description": "test-desc2",
+                "numEmployees": 2,
+                "logoUrl": null
+            }
+        ]);
+    });
+});
 
 describe('getCompany method', () => {
 
@@ -197,6 +224,40 @@ describe('getSingleJob method', () => {
                         "logoUrl": "/logos/logo3.png"
                     }
                 }
+            }
+        )
+    });
+});
+
+describe('applyToJob method', () => {
+    test('Properly apply to single job', async () => {
+        const data = {
+            username: 'mock-user',
+            jobId: '1'
+        }
+        const job = await JoblyApi.applyToJob({
+            username: 'mock-user',
+            jobId: 'test-id'
+        });
+
+        expect(job).toEqual(
+            {
+                applied: 'test-id'
+            }
+        )
+    });
+});
+
+describe('unapplyToJob method', () => {
+    test('Properly apply to single job', async () => {
+        const job = await JoblyApi.unapplyToJob({
+            username: 'mock-user',
+            jobId: 'test-id'
+        });
+
+        expect(job).toEqual(
+            {
+                unapplied: 'test-id'
             }
         )
     });

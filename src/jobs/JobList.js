@@ -47,7 +47,7 @@ function JobList({ handleApplyButton }) {
   }
 
   return (
-    <div className='JobList col-md-8 offset-md-2' onClick={handleApplyButton}>
+    <div data-testid='resolved' className='JobList col-md-8 offset-md-2' onClick={handleApplyButton}>
 
       <SearchBar handleSearch={handleSearch} />
       {jobList.map((j) => {
