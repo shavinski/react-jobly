@@ -55,16 +55,19 @@ function ProfileForm({ editProfile }) {
         <div className="card-body">
           <form>
             <div className="mb-3">
-              <label className="form-label">Username</label>
+              <label className="form-label" htmlFor="username">Username</label>
               <input
                 disabled
+                id="username"
+                name="username"
                 className="form-control"
                 placeholder={currentUser.username}
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">First Name</label>
+              <label className="form-label" htmlFor="firstName">First Name</label>
               <input
+                id="firstName"
                 name="firstName"
                 className="form-control"
                 value={formData.firstName}
@@ -72,8 +75,9 @@ function ProfileForm({ editProfile }) {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Last Name</label>
+              <label className="form-label" htmlFor="lastName">Last Name</label>
               <input
+                id="lastName"
                 name="lastName"
                 className="form-control"
                 value={formData.lastName}
@@ -81,8 +85,9 @@ function ProfileForm({ editProfile }) {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Email</label>
+              <label className="form-label" htmlFor="email">Email</label>
               <input
+                id="email"
                 name="email"
                 className="form-control"
                 value={formData.email}

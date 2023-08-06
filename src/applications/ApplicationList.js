@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import userContext from '../userContext'
-import JoblyApi from "../joblyApi";
+import JoblyApi from "../api/joblyApi";
 import JobCard from "../jobs/JobCard";
 
 
@@ -29,12 +29,11 @@ function ApplicationList({ handleApplyButton }) {
 
 
     if (isLoading) {
-        return <h1>Loading...</h1>;
+        return <h1 data-testid='loading'>Loading...</h1>;
     }
 
     return (
-        <div>
-
+        <div data-testid='resolved'>
             {applied.length
                 ? (
                     <div className="col-md-8 offset-md-2" onClick={handleApplyButton}>
@@ -48,8 +47,6 @@ function ApplicationList({ handleApplyButton }) {
                     <h1 className="mt-3">No applications sent so far!</h1>
                 )
             }
-
-
         </div>
     )
 }

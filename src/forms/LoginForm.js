@@ -25,7 +25,6 @@ function LoginForm({ login }) {
             await login(formData);
             navigate("/");
         } catch (err) {
-            console.log('ERROR', err);
             setFlashMessage(err);
             return;
         }
@@ -52,8 +51,9 @@ function LoginForm({ login }) {
                         <form onSubmit={handleSubmit}>
     
                             <div className="mb-3">
-                                <label className="form-label">Username</label>
+                                <label htmlFor='username' className="form-label">Username</label>
                                 <input
+                                    id="username"
                                     name="username"
                                     className="form-control"
                                     value={formData.username}
@@ -63,8 +63,9 @@ function LoginForm({ login }) {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label className="form-label">Password</label>
+                                <label htmlFor="password" className="form-label">Password</label>
                                 <input
+                                    id="password"
                                     type="password"
                                     name="password"
                                     className="form-control"
