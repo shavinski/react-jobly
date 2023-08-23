@@ -15,13 +15,13 @@ import "./CompanyList.css";
 function CompanyList() {
   const [companyList, setCompanyList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [offset, setOffset] = useState(0)
 
 
   useEffect(() => {
     async function getCompanies() {
-      const response = await JoblyAPI.getCompanies();
-      setCompanyList(response);
+      const response = await JoblyAPI.getCompanies(offset);
+      setCompanyList(prevData => [...prevData, ...response]);
       setIsLoading(false);
     }
 
@@ -29,7 +29,7 @@ function CompanyList() {
   }, []);
 
   async function handleSearch(results) {
-    const response = await JoblyAPI.getCompanies(results);
+    const response = await JoblyAPI.getCompanies(offset, results);
     setCompanyList(response);
   }
 
@@ -39,7 +39,7 @@ function CompanyList() {
 
   return (
     <div data-testid="resolved" className='CompanyList col-md-8 offset-md-2'>
-      <SearchBar handleSearch={handleSearch} className />
+      <SearchBar handleSearch={handleSearch} />
       {companyList.length
         ? (
           <div className="CompanyList-list">
