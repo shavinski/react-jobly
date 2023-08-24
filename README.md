@@ -19,7 +19,7 @@
 
 
 <!-- USAGE EXAMPLES -->
-<img src="![ezgif com-crop](https://github.com/shavinski/react-jobly/assets/104947296/3211d565-8c81-40e6-94f3-24851e53b336)" alt="gif video of app">
+[ezgif com-crop](https://github.com/shavinski/react-jobly/assets/104947296/3211d565-8c81-40e6-94f3-24851e53b336)
 
 
 <!-- GETTING STARTED -->
