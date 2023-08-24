@@ -19,7 +19,7 @@
 
 
 <!-- USAGE EXAMPLES -->
-[ezgif com-crop](https://github.com/shavinski/react-jobly/assets/104947296/3211d565-8c81-40e6-94f3-24851e53b336)
+![ezgif com-crop](https://github.com/shavinski/react-jobly/assets/104947296/7ad316be-43b4-423b-a10b-0991141e3319)
 
 
 <!-- GETTING STARTED -->
