@@ -23,7 +23,7 @@
 ![ezgif com-crop](https://github.com/shavinski/react-jobly/assets/104947296/7ad316be-43b4-423b-a10b-0991141e3319)
 
 ### Login
-<p>Login: testuser</p>
+<p>Username: testuser</p>
 <p>Password: password</p>
 
 
