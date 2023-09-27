@@ -38,8 +38,8 @@ function Nav({ logout }) {
           </NavLink>
         </li>
         <li className="nav-item m-1">
-          <Link className="nav-link" to="/" onClick={logout}>
-            <button className="btn btn-secondary btn-sm">Log out {currentUser.first_name || currentUser.username}</button>
+          <Link className="nav-link btn btn-secondary btn-sm" to="/" onClick={logout}>
+            Log out {currentUser.first_name || currentUser.username}
           </Link>
         </li>
 
@@ -52,7 +52,7 @@ function Nav({ logout }) {
       <ul className="navbar-nav ms-auto">
         <li className="nav-item m-1">
           <NavLink className="nav-link" to="/login">
-            Login
+            Log In
           </NavLink>
         </li>
         <li className="nav-item m-1">
