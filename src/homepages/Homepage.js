@@ -36,8 +36,8 @@ function Homepage() {
         :
         <div>
           <div>
-            <Link to='/login'><button className="btn btn-dark m-3">Log In</button></Link>
-            <Link to='/signup'><button className="btn btn-dark m-3">Sign Up</button></Link>
+            <Link className="btn btn-dark m-3" to='/login'>Log In</Link>
+            <Link className="btn btn-dark m-3" to='/signup'>Sign Up</Link>
           </div>
           <div className="homepage-container d-flex flex-column align-items-center">
             <img className="img-fluid" src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/124815iCD902962B2466A84?v=v2" alt="and a man and woman having an interesting conversation"></img>
