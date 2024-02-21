@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import JoblyAPI from "../joblyApi";
+import JoblyAPI from "../api/joblyApi";
 import JobCard from "./JobCard";
 import SearchBar from "../searchBars/SearchBar";
 import "./JobList.css";
@@ -39,7 +39,7 @@ function JobList({ handleApplyButton }) {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1 data-testid='loading'>Loading...</h1>;
   }
 
   if (!currentUser) {
@@ -47,7 +47,7 @@ function JobList({ handleApplyButton }) {
   }
 
   return (
-    <div className='JobList col-md-8 offset-md-2' onClick={handleApplyButton}>
+    <div data-testid='resolved' className='JobList col-md-8 offset-md-2' onClick={handleApplyButton}>
 
       <SearchBar handleSearch={handleSearch} />
       {jobList.map((j) => {

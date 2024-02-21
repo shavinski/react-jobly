@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import "bootswatch/dist/morph/bootstrap.min.css";
 import jwt_Decode from "jwt-decode";
 import Nav from "./navbars/Nav";
-import JoblyApi from "./joblyApi";
+import JoblyApi from "./api/joblyApi";
 import userContext from "./userContext";
 
 /** Loads initial app
@@ -37,14 +37,12 @@ import userContext from "./userContext";
  * App -> { Nav, RoutesList } 
  */
 
-const LOCAL_STORAGE_TOKEN_KEY = "token";
+const LOCAL_STORAGE_TOKEN_KEY = "";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY));
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log('\n currentUser => ',currentUser);
 
   useEffect(() => {
     async function getUser() {
@@ -137,7 +135,7 @@ function App() {
   if (isLoading) {
     return (
       <div>
-        <h1>Loading...</h1>
+        <h1 data-testid="loading" >Loading...</h1>
       </div>
     )
   }
@@ -152,8 +150,7 @@ function App() {
             signup={signup}
             editProfile={editProfile}
             handleApplyButton={handleApplyButton}
-            applyToJob={applyToJob}
-            unapplyToJob={unapplyToJob} />
+          />
         </BrowserRouter>
       </userContext.Provider>
     </div>

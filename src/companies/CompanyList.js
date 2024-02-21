@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import JoblyAPI from "../joblyApi";
+import JoblyAPI from "../api/joblyApi";
 import CompanyCard from "./CompanyCard";
 import SearchBar from "../searchBars/SearchBar";
 import "./CompanyList.css";
@@ -15,6 +15,8 @@ import "./CompanyList.css";
 function CompanyList() {
   const [companyList, setCompanyList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+
 
   useEffect(() => {
     async function getCompanies() {
@@ -32,11 +34,11 @@ function CompanyList() {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1 data-testid='loading'>Loading...</h1>;
   }
 
   return (
-    <div className='CompanyList col-md-8 offset-md-2'>
+    <div data-testid="resolved" className='CompanyList col-md-8 offset-md-2'>
       <SearchBar handleSearch={handleSearch} className />
       {companyList.length
         ? (
